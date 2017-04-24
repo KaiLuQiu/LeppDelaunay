@@ -24,12 +24,12 @@ Arguments=
 Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
 Dependency Action=Nothing
 EnvironmentGroup=
-Executable=file:///home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2
+Executable=file:///home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build/lepp-delaunay
 External Terminal=konsole --noclose --workdir %workdir -e %exe
-Project Target=Tarea_2,lepp-delaunay
+Project Target=
 Use External Terminal=false
 Working Directory=
-isExecutable=false
+isExecutable=true
 
 [Project]
 VersionControlSupport=kdevgit

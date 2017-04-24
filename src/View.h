@@ -1,18 +1,18 @@
 #ifndef _VIEW_H_
 #define _VIEW_H_
 
-#include <QMainWindow>
+#include <QWidget>
 
-class View : public QMainWindow
-{
-    Q_OBJECT
+class View : public QWidget {
 
 public:
-    explicit View(QWidget *parent = 0);
-    ~View();
+    View(QWidget *parent = 0);
+
+protected:
+    void paintEvent(QPaintEvent *e);
 
 private:
-
-};
+    void doPainting();
+  };
 
 #endif // _VIEW_H_
