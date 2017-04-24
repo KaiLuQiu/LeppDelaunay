@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/tarea_2.dir/src/main.cpp.o CMakeFiles/tarea_2.dir/src/tarea_2.cpp.o CMakeFiles/tarea_2.dir/tarea_2_automoc.cpp.o  -o tarea_2 -rdynamic /usr/lib/libQt5Widgets.so.5.8.0 /usr/lib/libQt5Gui.so.5.8.0 /usr/lib/libQt5Core.so.5.8.0 
