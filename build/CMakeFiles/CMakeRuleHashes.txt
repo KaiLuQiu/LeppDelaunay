@@ -1,3 +1,2 @@
 # Hashes of file build rules.
-aa6d017f6a7689529be49a4ae5b5f2f1 CMakeFiles/tarea_2_automoc
-dea6b41d1594752167f87d19453323e9 ui_tarea_2.h
+0f1b19a4df015f2b4eea6c10779f912f CMakeFiles/lepp-delaunay_automoc

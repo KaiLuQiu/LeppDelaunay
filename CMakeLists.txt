@@ -11,18 +11,14 @@ find_package(Qt5Widgets REQUIRED)
 
 set(tarea_2_SRC
   src/main.cpp
-  src/tarea_2.cpp
+  src/View.cpp
 )
 
-# Create code from a list of Qt designer ui files.
-#set(CMAKE_AUTOUIC ON) # use this if you have CMake 3.x instead of the following
-qt5_wrap_ui(tarea_2_SRC src/tarea_2.ui)
-
-# Tell CMake to create the helloworld executable
-add_executable(tarea_2 ${tarea_2_SRC})
+# Tell CMake to create the executable
+add_executable(lepp-delaunay ${tarea_2_SRC})
 
 # Use the Widgets module from Qt 5.
-target_link_libraries(tarea_2 Qt5::Widgets)
+target_link_libraries(lepp-delaunay Qt5::Widgets)
 
 # Install the executable
-install(TARGETS tarea_2 DESTINATION bin)
+install(TARGETS lepp-delaunay DESTINATION bin)

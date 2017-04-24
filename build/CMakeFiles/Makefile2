@@ -60,71 +60,71 @@ CMAKE_SOURCE_DIR = "/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Se
 CMAKE_BINARY_DIR = "/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build"
 
 #=============================================================================
-# Target rules for target CMakeFiles/tarea_2.dir
+# Target rules for target CMakeFiles/lepp-delaunay.dir
 
 # All Build rule for target.
-CMakeFiles/tarea_2.dir/all: CMakeFiles/tarea_2_automoc.dir/all
-	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/depend
-	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build/CMakeFiles" --progress-num=1,2,3,4,5 "Built target tarea_2"
-.PHONY : CMakeFiles/tarea_2.dir/all
+CMakeFiles/lepp-delaunay.dir/all: CMakeFiles/lepp-delaunay_automoc.dir/all
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/depend
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build/CMakeFiles" --progress-num=1,2,3,4 "Built target lepp-delaunay"
+.PHONY : CMakeFiles/lepp-delaunay.dir/all
 
 # Include target in all.
-all: CMakeFiles/tarea_2.dir/all
+all: CMakeFiles/lepp-delaunay.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/tarea_2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build/CMakeFiles" 6
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/tarea_2.dir/all
+CMakeFiles/lepp-delaunay.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build/CMakeFiles" 5
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/lepp-delaunay.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build/CMakeFiles" 0
-.PHONY : CMakeFiles/tarea_2.dir/rule
+.PHONY : CMakeFiles/lepp-delaunay.dir/rule
 
 # Convenience name for target.
-tarea_2: CMakeFiles/tarea_2.dir/rule
+lepp-delaunay: CMakeFiles/lepp-delaunay.dir/rule
 
-.PHONY : tarea_2
-
-# clean rule for target.
-CMakeFiles/tarea_2.dir/clean:
-	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/clean
-.PHONY : CMakeFiles/tarea_2.dir/clean
+.PHONY : lepp-delaunay
 
 # clean rule for target.
-clean: CMakeFiles/tarea_2.dir/clean
+CMakeFiles/lepp-delaunay.dir/clean:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/clean
+.PHONY : CMakeFiles/lepp-delaunay.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/lepp-delaunay.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/tarea_2_automoc.dir
+# Target rules for target CMakeFiles/lepp-delaunay_automoc.dir
 
 # All Build rule for target.
-CMakeFiles/tarea_2_automoc.dir/all:
-	$(MAKE) -f CMakeFiles/tarea_2_automoc.dir/build.make CMakeFiles/tarea_2_automoc.dir/depend
-	$(MAKE) -f CMakeFiles/tarea_2_automoc.dir/build.make CMakeFiles/tarea_2_automoc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build/CMakeFiles" --progress-num=6 "Built target tarea_2_automoc"
-.PHONY : CMakeFiles/tarea_2_automoc.dir/all
+CMakeFiles/lepp-delaunay_automoc.dir/all:
+	$(MAKE) -f CMakeFiles/lepp-delaunay_automoc.dir/build.make CMakeFiles/lepp-delaunay_automoc.dir/depend
+	$(MAKE) -f CMakeFiles/lepp-delaunay_automoc.dir/build.make CMakeFiles/lepp-delaunay_automoc.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build/CMakeFiles" --progress-num=5 "Built target lepp-delaunay_automoc"
+.PHONY : CMakeFiles/lepp-delaunay_automoc.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/tarea_2_automoc.dir/rule: cmake_check_build_system
+CMakeFiles/lepp-delaunay_automoc.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build/CMakeFiles" 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/tarea_2_automoc.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/lepp-delaunay_automoc.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build/CMakeFiles" 0
-.PHONY : CMakeFiles/tarea_2_automoc.dir/rule
+.PHONY : CMakeFiles/lepp-delaunay_automoc.dir/rule
 
 # Convenience name for target.
-tarea_2_automoc: CMakeFiles/tarea_2_automoc.dir/rule
+lepp-delaunay_automoc: CMakeFiles/lepp-delaunay_automoc.dir/rule
 
-.PHONY : tarea_2_automoc
-
-# clean rule for target.
-CMakeFiles/tarea_2_automoc.dir/clean:
-	$(MAKE) -f CMakeFiles/tarea_2_automoc.dir/build.make CMakeFiles/tarea_2_automoc.dir/clean
-.PHONY : CMakeFiles/tarea_2_automoc.dir/clean
+.PHONY : lepp-delaunay_automoc
 
 # clean rule for target.
-clean: CMakeFiles/tarea_2_automoc.dir/clean
+CMakeFiles/lepp-delaunay_automoc.dir/clean:
+	$(MAKE) -f CMakeFiles/lepp-delaunay_automoc.dir/build.make CMakeFiles/lepp-delaunay_automoc.dir/clean
+.PHONY : CMakeFiles/lepp-delaunay_automoc.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/lepp-delaunay_automoc.dir/clean
 
 .PHONY : clean
 

@@ -1,12 +1,11 @@
-#include "tarea_2.h"
 #include <QApplication>
+#include "View.h"
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    Tarea_2 w;
-    w.show();
+    View view;
+    view.show();
 
     return app.exec();
 }
-

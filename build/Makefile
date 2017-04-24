@@ -78,17 +78,6 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
@@ -99,6 +88,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target install
 install: preinstall
@@ -155,30 +155,84 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named tarea_2
+# Target rules for targets named lepp-delaunay
 
 # Build rule for target.
-tarea_2: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tarea_2
-.PHONY : tarea_2
+lepp-delaunay: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lepp-delaunay
+.PHONY : lepp-delaunay
 
 # fast build rule for target.
-tarea_2/fast:
-	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/build
-.PHONY : tarea_2/fast
+lepp-delaunay/fast:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/build
+.PHONY : lepp-delaunay/fast
 
 #=============================================================================
-# Target rules for targets named tarea_2_automoc
+# Target rules for targets named lepp-delaunay_automoc
 
 # Build rule for target.
-tarea_2_automoc: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tarea_2_automoc
-.PHONY : tarea_2_automoc
+lepp-delaunay_automoc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lepp-delaunay_automoc
+.PHONY : lepp-delaunay_automoc
 
 # fast build rule for target.
-tarea_2_automoc/fast:
-	$(MAKE) -f CMakeFiles/tarea_2_automoc.dir/build.make CMakeFiles/tarea_2_automoc.dir/build
-.PHONY : tarea_2_automoc/fast
+lepp-delaunay_automoc/fast:
+	$(MAKE) -f CMakeFiles/lepp-delaunay_automoc.dir/build.make CMakeFiles/lepp-delaunay_automoc.dir/build
+.PHONY : lepp-delaunay_automoc/fast
+
+lepp-delaunay_automoc.o: lepp-delaunay_automoc.cpp.o
+
+.PHONY : lepp-delaunay_automoc.o
+
+# target to build an object file
+lepp-delaunay_automoc.cpp.o:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/lepp-delaunay_automoc.cpp.o
+.PHONY : lepp-delaunay_automoc.cpp.o
+
+lepp-delaunay_automoc.i: lepp-delaunay_automoc.cpp.i
+
+.PHONY : lepp-delaunay_automoc.i
+
+# target to preprocess a source file
+lepp-delaunay_automoc.cpp.i:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/lepp-delaunay_automoc.cpp.i
+.PHONY : lepp-delaunay_automoc.cpp.i
+
+lepp-delaunay_automoc.s: lepp-delaunay_automoc.cpp.s
+
+.PHONY : lepp-delaunay_automoc.s
+
+# target to generate assembly for a file
+lepp-delaunay_automoc.cpp.s:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/lepp-delaunay_automoc.cpp.s
+.PHONY : lepp-delaunay_automoc.cpp.s
+
+src/View.o: src/View.cpp.o
+
+.PHONY : src/View.o
+
+# target to build an object file
+src/View.cpp.o:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/View.cpp.o
+.PHONY : src/View.cpp.o
+
+src/View.i: src/View.cpp.i
+
+.PHONY : src/View.i
+
+# target to preprocess a source file
+src/View.cpp.i:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/View.cpp.i
+.PHONY : src/View.cpp.i
+
+src/View.s: src/View.cpp.s
+
+.PHONY : src/View.s
+
+# target to generate assembly for a file
+src/View.cpp.s:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/View.cpp.s
+.PHONY : src/View.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -186,7 +240,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/src/main.cpp.o
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -195,7 +249,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/src/main.cpp.i
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -204,62 +258,8 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/src/main.cpp.s
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
-
-src/tarea_2.o: src/tarea_2.cpp.o
-
-.PHONY : src/tarea_2.o
-
-# target to build an object file
-src/tarea_2.cpp.o:
-	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/src/tarea_2.cpp.o
-.PHONY : src/tarea_2.cpp.o
-
-src/tarea_2.i: src/tarea_2.cpp.i
-
-.PHONY : src/tarea_2.i
-
-# target to preprocess a source file
-src/tarea_2.cpp.i:
-	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/src/tarea_2.cpp.i
-.PHONY : src/tarea_2.cpp.i
-
-src/tarea_2.s: src/tarea_2.cpp.s
-
-.PHONY : src/tarea_2.s
-
-# target to generate assembly for a file
-src/tarea_2.cpp.s:
-	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/src/tarea_2.cpp.s
-.PHONY : src/tarea_2.cpp.s
-
-tarea_2_automoc.o: tarea_2_automoc.cpp.o
-
-.PHONY : tarea_2_automoc.o
-
-# target to build an object file
-tarea_2_automoc.cpp.o:
-	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/tarea_2_automoc.cpp.o
-.PHONY : tarea_2_automoc.cpp.o
-
-tarea_2_automoc.i: tarea_2_automoc.cpp.i
-
-.PHONY : tarea_2_automoc.i
-
-# target to preprocess a source file
-tarea_2_automoc.cpp.i:
-	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/tarea_2_automoc.cpp.i
-.PHONY : tarea_2_automoc.cpp.i
-
-tarea_2_automoc.s: tarea_2_automoc.cpp.s
-
-.PHONY : tarea_2_automoc.s
-
-# target to generate assembly for a file
-tarea_2_automoc.cpp.s:
-	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/tarea_2_automoc.cpp.s
-.PHONY : tarea_2_automoc.cpp.s
 
 # Help Target
 help:
@@ -269,21 +269,21 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... tarea_2"
-	@echo "... rebuild_cache"
+	@echo "... lepp-delaunay"
 	@echo "... edit_cache"
+	@echo "... rebuild_cache"
 	@echo "... install"
 	@echo "... list_install_components"
-	@echo "... tarea_2_automoc"
+	@echo "... lepp-delaunay_automoc"
+	@echo "... lepp-delaunay_automoc.o"
+	@echo "... lepp-delaunay_automoc.i"
+	@echo "... lepp-delaunay_automoc.s"
+	@echo "... src/View.o"
+	@echo "... src/View.i"
+	@echo "... src/View.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/tarea_2.o"
-	@echo "... src/tarea_2.i"
-	@echo "... src/tarea_2.s"
-	@echo "... tarea_2_automoc.o"
-	@echo "... tarea_2_automoc.i"
-	@echo "... tarea_2_automoc.s"
 .PHONY : help
 
 
