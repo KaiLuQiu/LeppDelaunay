@@ -1,8 +1,10 @@
 #include <QApplication>
 #include <QMouseEvent>
 #include <QPainter>
+
 #include "Model.h"
 #include "View.h"
+#include "Triangle.h"
 #include "Constants.h"
 
 View::View(Model& model, QWidget* parent) : QWidget(parent), m_model(model)
@@ -25,23 +27,13 @@ void View::doPainting()
 
     painter.setPen(pen);
 
-    QLinearGradient grad1(0, 20, 0, 110);
-
-    grad1.setColorAt(0.1, Qt::black);
-    grad1.setColorAt(0.5, Qt::yellow);
-    grad1.setColorAt(0.9, Qt::black);
-
-    painter.fillRect(20, 20, Constants::WIDTH - 40, Constants::HEIGHT / 2 - 40, grad1);
-
-    QLinearGradient grad2(0, 55, 250, 0);
-
-    grad2.setColorAt(0.2, Qt::black);
-    grad2.setColorAt(0.5, Qt::red);
-    grad2.setColorAt(0.8, Qt::black);
-
-    painter.fillRect(20, Constants::HEIGHT / 2 + 10, Constants::WIDTH - 40, Constants::HEIGHT / 2 - 40, grad2);
-
-    painter.drawEllipse(QPoint(100, 100), 10, 10);
+    for (int i = 0; i < m_model.listLength(m_model.m_triangulation); ++i)
+    {
+        Triangle t = m_model.m_triangulation[i];
+        painter.drawLine(t.m_va.m_x, t.m_va.m_y, t.m_vb.m_x, t.m_vb.m_y);
+        painter.drawLine(t.m_vb.m_x, t.m_vb.m_y, t.m_vc.m_x, t.m_vc.m_y);
+        painter.drawLine(t.m_vc.m_x, t.m_vc.m_y, t.m_va.m_x, t.m_va.m_y);
+    }
 }
 
 void View::mousePressEvent(QMouseEvent* event)

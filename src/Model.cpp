@@ -1,6 +1,15 @@
 #include "Model.h"
 
-Model::Model()
+Model::Model() : Model("Triangles.txt")
+{
+}
+
+Model::Model(string fileName)
+{
+    parse(fileName);
+}
+
+Model::Model(Triangle* triangulation) : m_triangulation(triangulation)
 {
 }
 
@@ -8,9 +17,10 @@ Model::~Model()
 {
 }
 
-void Model::improve(Triangle* triangulation)
+// FIXME Re-parsear la tarea para saber si esta es la idea base
+void Model::improve()
 {
-    Triangle *s = findBadTriangles(triangulation);
+    Triangle *s = findBadTriangles();
 
     for (Triangle *t0 = s; t0 != nullptr; t0++)
     {
@@ -18,16 +28,22 @@ void Model::improve(Triangle* triangulation)
 
         const int length = listLength(leppList);
         Vertex centroid = selectCentroid(leppList[length - 2], leppList[length - 1]);
-        insertCentroid(triangulation, centroid);
+        insertCentroid(centroid);
 
         updateBadTriangles(s);
     }
 }
 
-// TODO findBadTriangles
-Triangle * Model::findBadTriangles(Triangle* triangulation)
+// TODO parse
+void Model::parse(string fileName)
 {
-    return triangulation;
+    m_triangulation = nullptr;
+}
+
+// TODO findBadTriangles
+Triangle * Model::findBadTriangles()
+{
+    return m_triangulation;
 }
 
 // TODO lepp
@@ -43,7 +59,7 @@ Vertex Model::selectCentroid(Triangle& t1, Triangle& t2)
 }
 
 // TODO insertCentroid
-void Model::insertCentroid(Triangle* triangulation, Vertex centroid)
+void Model::insertCentroid(Vertex centroid)
 {
 }
 
