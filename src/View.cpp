@@ -9,7 +9,6 @@ View::View(Model& model, QWidget* parent) : QWidget(parent), m_model(model)
 {
 }
 
-
 void View::paintEvent(QPaintEvent *e)
 {
     Q_UNUSED(e);
@@ -19,6 +18,12 @@ void View::paintEvent(QPaintEvent *e)
 void View::doPainting()
 {
     QPainter painter(this);
+    QPen pen(Qt::black, 2);
+
+    pen.setStyle(Qt::SolidLine);
+    pen.setBrush(Qt::red);
+
+    painter.setPen(pen);
 
     QLinearGradient grad1(0, 20, 0, 110);
 
@@ -44,4 +49,3 @@ void View::mousePressEvent(QMouseEvent* event)
     m_model.setPointAt(event->x(), event->y());
     update();
 }
-

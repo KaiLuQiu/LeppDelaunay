@@ -10,7 +10,7 @@ public:
     View(Model &model, QWidget* parent = 0);
 
 protected:
-    void paintEvent(QPaintEvent *e);
+    void paintEvent(QPaintEvent *e) override;
     void mousePressEvent(QMouseEvent * event) override;
 
 private:
