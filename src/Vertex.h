@@ -27,9 +27,11 @@ public:
      */
     ~Vertex();
 
+    void operator=(const Vertex &t);
+
 private:
-    const int m_x;
-    const int m_y;
+    int m_x;
+    int m_y;
 };
 
 #endif // _VERTEX_H_

@@ -2,6 +2,8 @@
 #define _MODEL_H_
 
 #include <string>
+#include <vector>
+
 #include "Triangle.h"
 
 using namespace std;
@@ -29,7 +31,7 @@ public:
     *
     * @param triangulation p_triangulation: La triangulación recibida.
     */
-    Model(Triangle *triangulation);
+    Model(vector<Triangle> triangulation);
 
     /**
     * @brief Destructor de Model.
@@ -52,14 +54,13 @@ public:
 
 
 private:
-    Triangle* findBadTriangles();
-    Triangle* lepp(Triangle *s, Triangle &t0);
+    vector<Triangle> findBadTriangles();
+    vector<Triangle> lepp(vector<Triangle> s, Triangle &t0);
     Vertex selectCentroid(Triangle &t1, Triangle &t2);
     void insertCentroid(Vertex centroid);
-    Triangle *updateBadTriangles(Triangle *badTriangles);
-    int listLength(Triangle * list);
+    vector<Triangle> updateBadTriangles(vector<Triangle> badTriangles);
 
-    Triangle *m_triangulation;
+    vector<Triangle> m_triangulation;
 };
 
 #endif // _MODEL_H_
