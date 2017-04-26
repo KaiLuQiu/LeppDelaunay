@@ -31,7 +31,7 @@ void View::doPainting()
     grad1.setColorAt(0.5, Qt::yellow);
     grad1.setColorAt(0.9, Qt::black);
 
-    painter.fillRect(20, 20, 300, 90, grad1);
+    painter.fillRect(20, 20, Constants::WIDTH - 40, Constants::HEIGHT / 2 - 40, grad1);
 
     QLinearGradient grad2(0, 55, 250, 0);
 
@@ -39,7 +39,7 @@ void View::doPainting()
     grad2.setColorAt(0.5, Qt::red);
     grad2.setColorAt(0.8, Qt::black);
 
-    painter.fillRect(20, 140, 300, 100, grad2);
+    painter.fillRect(20, Constants::HEIGHT / 2 + 10, Constants::WIDTH - 40, Constants::HEIGHT / 2 - 40, grad2);
 
     painter.drawEllipse(QPoint(m_model.m_x, m_model.m_y), 10, 10);
 }
