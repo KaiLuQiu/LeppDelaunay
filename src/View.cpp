@@ -41,11 +41,10 @@ void View::doPainting()
 
     painter.fillRect(20, Constants::HEIGHT / 2 + 10, Constants::WIDTH - 40, Constants::HEIGHT / 2 - 40, grad2);
 
-    painter.drawEllipse(QPoint(m_model.m_x, m_model.m_y), 10, 10);
+    painter.drawEllipse(QPoint(100, 100), 10, 10);
 }
 
 void View::mousePressEvent(QMouseEvent* event)
 {
-    m_model.setPointAt(event->x(), event->y());
     update();
 }

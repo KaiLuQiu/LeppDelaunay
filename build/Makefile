@@ -234,6 +234,60 @@ src/Model.cpp.s:
 	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Model.cpp.s
 .PHONY : src/Model.cpp.s
 
+src/Triangle.o: src/Triangle.cpp.o
+
+.PHONY : src/Triangle.o
+
+# target to build an object file
+src/Triangle.cpp.o:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Triangle.cpp.o
+.PHONY : src/Triangle.cpp.o
+
+src/Triangle.i: src/Triangle.cpp.i
+
+.PHONY : src/Triangle.i
+
+# target to preprocess a source file
+src/Triangle.cpp.i:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Triangle.cpp.i
+.PHONY : src/Triangle.cpp.i
+
+src/Triangle.s: src/Triangle.cpp.s
+
+.PHONY : src/Triangle.s
+
+# target to generate assembly for a file
+src/Triangle.cpp.s:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Triangle.cpp.s
+.PHONY : src/Triangle.cpp.s
+
+src/Vertex.o: src/Vertex.cpp.o
+
+.PHONY : src/Vertex.o
+
+# target to build an object file
+src/Vertex.cpp.o:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Vertex.cpp.o
+.PHONY : src/Vertex.cpp.o
+
+src/Vertex.i: src/Vertex.cpp.i
+
+.PHONY : src/Vertex.i
+
+# target to preprocess a source file
+src/Vertex.cpp.i:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Vertex.cpp.i
+.PHONY : src/Vertex.cpp.i
+
+src/Vertex.s: src/Vertex.cpp.s
+
+.PHONY : src/Vertex.s
+
+# target to generate assembly for a file
+src/Vertex.cpp.s:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Vertex.cpp.s
+.PHONY : src/Vertex.cpp.s
+
 src/View.o: src/View.cpp.o
 
 .PHONY : src/View.o
@@ -308,6 +362,12 @@ help:
 	@echo "... src/Model.o"
 	@echo "... src/Model.i"
 	@echo "... src/Model.s"
+	@echo "... src/Triangle.o"
+	@echo "... src/Triangle.i"
+	@echo "... src/Triangle.s"
+	@echo "... src/Vertex.o"
+	@echo "... src/Vertex.i"
+	@echo "... src/Vertex.s"
 	@echo "... src/View.o"
 	@echo "... src/View.i"
 	@echo "... src/View.s"
