@@ -12,6 +12,7 @@ find_package(Qt5Widgets REQUIRED)
 set(tarea_2_SRC
   src/main.cpp
   src/View.cpp
+  src/Model.cpp
 )
 
 # Tell CMake to create the executable

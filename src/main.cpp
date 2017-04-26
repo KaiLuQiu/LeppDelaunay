@@ -5,7 +5,8 @@
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
-    View window;
+    Model model;
+    View window(model);
 
     window.resize(Constants::WIDTH, Constants::HEIGHT);
     window.setWindowTitle("Lepp Delaunay");

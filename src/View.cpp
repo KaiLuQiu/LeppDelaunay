@@ -1,9 +1,14 @@
 #include <QApplication>
+#include <QMouseEvent>
 #include <QPainter>
+#include "Model.h"
 #include "View.h"
+#include "Constants.h"
 
-View::View(QWidget *parent) : QWidget(parent)
-{}
+View::View(Model& model, QWidget* parent) : QWidget(parent), m_model(model)
+{
+}
+
 
 void View::paintEvent(QPaintEvent *e)
 {
@@ -13,7 +18,6 @@ void View::paintEvent(QPaintEvent *e)
 
 void View::doPainting()
 {
-
     QPainter painter(this);
 
     QLinearGradient grad1(0, 20, 0, 110);
@@ -31,4 +35,13 @@ void View::doPainting()
     grad2.setColorAt(0.8, Qt::black);
 
     painter.fillRect(20, 140, 300, 100, grad2);
+
+    painter.drawEllipse(QPoint(m_model.m_x, m_model.m_y), 10, 10);
 }
+
+void View::mousePressEvent(QMouseEvent* event)
+{
+    m_model.setPointAt(event->x(), event->y());
+    update();
+}
+
