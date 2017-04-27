@@ -4,6 +4,8 @@
 
 #include "Model.h"
 
+#include <iostream>
+
 Model::Model() : Model("../Triangles.txt")
 {
 }
@@ -24,6 +26,8 @@ Model::~Model()
 // FIXME Re-parsear la tarea para saber si esta es la idea base
 void Model::improve(int tolerance)
 {
+    std::cout << "Recibi orden de improve(tolerance)" << std::endl;
+
     vector<Triangle> s = findBadTriangles(tolerance);
 
     for (Triangle &t0 : s)

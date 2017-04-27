@@ -19,6 +19,14 @@ public:
     void setupUi(QWidget *View, Model &model);
     void retranslateUi(QWidget *View);
 
+public slots:
+    void prepareSend();
+    void prepareSendEnter();
+
+signals:
+    void emitTolerance(const int tolerance);
+    void emitToleranceEnter(const int tolerance);
+
 private:
     Canvas *canvas;
     QLabel *label;

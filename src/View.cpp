@@ -42,14 +42,13 @@ void View::setupUi(QWidget* View, Model &model)
     resetButton = new QPushButton(View);
     resetButton->setObjectName(QStringLiteral("resetButton"));
     resetButton->setGeometry(QRect(1080, 750, 150, 50));
-//     FIXME Este texto (int) hay que enviarlo al modelo con SIGNAL/SLOT
-//     tolerance->text().toInt();
 
     retranslateUi(View);
 
-//     QObject::connect(tolerance, &QLineEdit::copy, canvas, &Canvas::improve);
-//     QObject::connect(improveButton, &QAbstractButton::clicked, canvas, &Canvas::improve);
-    QObject::connect(resetButton, &QAbstractButton::clicked, canvas, &Canvas::reset);
+    QObject::connect(tolerance, &QLineEdit::returnPressed, this, &View::prepareSendEnter);
+    QObject::connect(this, &View::emitToleranceEnter, canvas, &Canvas::improve);
+    QObject::connect(improveButton, &QAbstractButton::clicked, this, &View::prepareSend);
+    QObject::connect(this, &View::emitTolerance, canvas, &Canvas::improve);
 
     QMetaObject::connectSlotsByName(View);
 }
@@ -61,4 +60,16 @@ void View::retranslateUi(QWidget *View)
     label->setText(QApplication::translate("Form", "Ingrese ángulo de tolerancia (en grados):", Q_NULLPTR));
     improveButton->setText(QApplication::translate("View", "Improve!", Q_NULLPTR));
     resetButton->setText(QApplication::translate("View", "Reset", Q_NULLPTR));
+}
+
+void View::prepareSend()
+{
+    const int tol = tolerance->text().toInt();
+    emit emitTolerance(tol);
+}
+
+void View::prepareSendEnter()
+{
+    const int tol = tolerance->text().toInt();
+    emit emitToleranceEnter(tol);
 }
