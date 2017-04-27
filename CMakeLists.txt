@@ -15,6 +15,7 @@ set(tarea_2_SRC
   src/View.cpp
   src/Vertex.cpp
   src/Triangle.cpp
+  src/MainWindow.cpp
 )
 
 # Tell CMake to create the executable

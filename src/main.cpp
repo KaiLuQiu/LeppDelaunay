@@ -1,16 +1,16 @@
 #include <QApplication>
 #include "View.h"
+#include "MainWindow.h"
 #include "Constants.h"
 
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
     Model model;
-    View window(model);
+    MainWindow mainwindow;
+//     View window(model, &mainwindow);
 
-    window.resize(Constants::WIDTH, Constants::HEIGHT);
-    window.setWindowTitle("Lepp Delaunay");
-    window.show();
+    mainwindow.show();
 
     return app.exec();
 }

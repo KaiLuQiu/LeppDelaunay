@@ -207,6 +207,33 @@ lepp-delaunay_automoc.cpp.s:
 	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/lepp-delaunay_automoc.cpp.s
 .PHONY : lepp-delaunay_automoc.cpp.s
 
+src/MainWindow.o: src/MainWindow.cpp.o
+
+.PHONY : src/MainWindow.o
+
+# target to build an object file
+src/MainWindow.cpp.o:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/MainWindow.cpp.o
+.PHONY : src/MainWindow.cpp.o
+
+src/MainWindow.i: src/MainWindow.cpp.i
+
+.PHONY : src/MainWindow.i
+
+# target to preprocess a source file
+src/MainWindow.cpp.i:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/MainWindow.cpp.i
+.PHONY : src/MainWindow.cpp.i
+
+src/MainWindow.s: src/MainWindow.cpp.s
+
+.PHONY : src/MainWindow.s
+
+# target to generate assembly for a file
+src/MainWindow.cpp.s:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/MainWindow.cpp.s
+.PHONY : src/MainWindow.cpp.s
+
 src/Model.o: src/Model.cpp.o
 
 .PHONY : src/Model.o
@@ -359,6 +386,9 @@ help:
 	@echo "... lepp-delaunay_automoc.o"
 	@echo "... lepp-delaunay_automoc.i"
 	@echo "... lepp-delaunay_automoc.s"
+	@echo "... src/MainWindow.o"
+	@echo "... src/MainWindow.i"
+	@echo "... src/MainWindow.s"
 	@echo "... src/Model.o"
 	@echo "... src/Model.i"
 	@echo "... src/Model.s"
