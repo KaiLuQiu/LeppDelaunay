@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QPushButton>
-#include "View.h"
+#include "Canvas.h"
 #include "Model.h"
 
 class MainWindow : public QWidget
@@ -17,7 +17,7 @@ public:
     void retranslateUi(QWidget *MainWindow);
 
 private:
-    View *view;
+    Canvas *canvas;
     QPushButton *improveButton;
     QPushButton *resetButton;
 

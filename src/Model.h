@@ -10,7 +10,7 @@ using namespace std;
 
 class Model
 {
-    friend class View;
+    friend class Canvas;
 
 public:
     /**

@@ -9,7 +9,7 @@ MainWindow::MainWindow(Model model, QWidget *parent) : QWidget(parent)
 
 MainWindow::~MainWindow()
 {
-    delete view;
+    delete canvas;
     delete improveButton;
     delete resetButton;
 }
@@ -20,9 +20,9 @@ void MainWindow::setupUi(QWidget* MainWindow, Model &model)
         MainWindow->setObjectName(QStringLiteral("MainWindow"));
     MainWindow->resize(Constants::WIDTH, Constants::HEIGHT + 80);
 
-    view = new View(model, MainWindow);
-    view->setObjectName(QStringLiteral("view"));
-    view->setGeometry(QRect(-1, -1, Constants::WIDTH, Constants::HEIGHT));
+    canvas = new Canvas(model, MainWindow);
+    canvas->setObjectName(QStringLiteral("canvas"));
+    canvas->setGeometry(QRect(-1, -1, Constants::WIDTH, Constants::HEIGHT));
 
     improveButton = new QPushButton(MainWindow);
     improveButton->setObjectName(QStringLiteral("improveButton"));
@@ -34,8 +34,8 @@ void MainWindow::setupUi(QWidget* MainWindow, Model &model)
 
     retranslateUi(MainWindow);
 
-    QObject::connect(improveButton, &QAbstractButton::clicked, view, &View::improve);
-    QObject::connect(resetButton, &QAbstractButton::clicked, view, &View::reset);
+    QObject::connect(improveButton, &QAbstractButton::clicked, canvas, &Canvas::improve);
+    QObject::connect(resetButton, &QAbstractButton::clicked, canvas, &Canvas::reset);
 
     QMetaObject::connectSlotsByName(MainWindow);
 }                                                           // setupUi

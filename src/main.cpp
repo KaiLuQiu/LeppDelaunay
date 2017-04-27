@@ -1,5 +1,5 @@
 #include <QApplication>
-#include "View.h"
+#include "Canvas.h"
 #include "MainWindow.h"
 
 int main(int argc, char **argv)

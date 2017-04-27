@@ -6,7 +6,7 @@
 class Triangle
 {
     friend class Model;
-    friend class View;
+    friend class Canvas;
 
 public:
     /**

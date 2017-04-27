@@ -12,7 +12,7 @@ find_package(Qt5Widgets REQUIRED)
 set(tarea_2_SRC
   src/main.cpp
   src/Model.cpp
-  src/View.cpp
+  src/Canvas.cpp
   src/Vertex.cpp
   src/Triangle.cpp
   src/MainWindow.cpp

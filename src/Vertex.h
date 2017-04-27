@@ -4,7 +4,7 @@
 class Vertex
 {
     friend class Triangle;
-    friend class View;
+    friend class Canvas;
 
 public:
     /**

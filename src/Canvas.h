@@ -1,19 +1,19 @@
-#ifndef _VIEW_H_
-#define _VIEW_H_
+#ifndef _CANVAS_H_
+#define _CANVAS_H_
 
 #include <QWidget>
 #include "Model.h"
 
-class View : public QWidget
+class Canvas : public QWidget
 {
 public:
     /**
-    * @brief Constructor de clase View.
+    * @brief Constructor de clase Canvas.
     *
     * @param model p_model: Modelo Lepp-Delaunay.
     * @param parent p_parent: Ventana padre para Qt.
     */
-    View(Model &model, QWidget* parent = 0);
+    Canvas(Model &model, QWidget* parent = 0);
 
 public slots:
     void improve();
@@ -44,4 +44,4 @@ private:
     void doPainting();
 };
 
-#endif // _VIEW_H_
+#endif // _CANVAS_H_

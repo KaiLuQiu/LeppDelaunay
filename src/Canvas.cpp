@@ -2,22 +2,20 @@
 #include <QMouseEvent>
 #include <QPainter>
 
-#include "View.h"
+#include "Canvas.h"
 #include "Triangle.h"
 
-#include <iostream>
-
-View::View(Model& model, QWidget* parent) : QWidget(parent), m_model(model)
+Canvas::Canvas(Model& model, QWidget* parent) : QWidget(parent), m_model(model)
 {
 }
 
-void View::paintEvent(QPaintEvent *e)
+void Canvas::paintEvent(QPaintEvent *e)
 {
     Q_UNUSED(e);
     doPainting();
 }
 
-void View::doPainting()
+void Canvas::doPainting()
 {
     QPainter painter(this);
     QPen pen(Qt::black, 2);
@@ -35,18 +33,18 @@ void View::doPainting()
     }
 }
 
-void View::mousePressEvent(QMouseEvent* event)
+void Canvas::mousePressEvent(QMouseEvent* event)
 {
     Q_UNUSED(event);
 }
 
-void View::improve()
+void Canvas::improve()
 {
     m_model.improve();
     update();
 }
 
-void View::reset()
+void Canvas::reset()
 {
     m_model.parse();
     update();
