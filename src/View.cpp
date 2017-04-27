@@ -9,7 +9,6 @@
 
 View::View(Model& model, QWidget* parent) : QWidget(parent), m_model(model)
 {
-    reset();
 }
 
 void View::paintEvent(QPaintEvent *e)
@@ -38,14 +37,17 @@ void View::doPainting()
 
 void View::mousePressEvent(QMouseEvent* event)
 {
+    Q_UNUSED(event);
 }
 
 void View::improve()
 {
     m_model.improve();
+    update();
 }
 
 void View::reset()
 {
     m_model.parse();
+    update();
 }

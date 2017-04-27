@@ -41,6 +41,8 @@ void Model::improve()
 
 void Model::parse(string fileName)
 {
+    m_triangulation.clear();
+
     ifstream myFile(fileName);
     vector<string> lines;
     string line;
@@ -52,7 +54,6 @@ void Model::parse(string fileName)
             lines.push_back(line);
         }
     }
-    myFile.close();
 
     for (int i = 0; i < lines.size(); ++i)
     {
