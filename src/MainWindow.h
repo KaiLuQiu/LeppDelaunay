@@ -6,8 +6,6 @@
 #include "View.h"
 #include "Model.h"
 
-class View;
-
 class MainWindow : public QWidget
 {
     Q_OBJECT

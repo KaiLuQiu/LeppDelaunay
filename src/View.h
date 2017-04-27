@@ -15,6 +15,10 @@ public:
     */
     View(Model &model, QWidget* parent = 0);
 
+public slots:
+    void improve();
+    void reset();
+
 protected:
     /**
     * @brief Método usado por Qt para pintar el QWidget.

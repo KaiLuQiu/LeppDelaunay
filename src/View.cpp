@@ -5,6 +5,8 @@
 #include "View.h"
 #include "Triangle.h"
 
+#include <iostream>
+
 View::View(Model& model, QWidget* parent) : QWidget(parent), m_model(model)
 {
     m_model.improve();
@@ -36,5 +38,14 @@ void View::doPainting()
 
 void View::mousePressEvent(QMouseEvent* event)
 {
-    update();
+}
+
+void View::improve()
+{
+    std::cout << "Improved" << std::endl;
+}
+
+void View::reset()
+{
+    std::cout << "Resetted" << std::endl;
 }

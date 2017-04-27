@@ -2,7 +2,6 @@
 #include "MainWindow.h"
 #include "Constants.h"
 
-
 MainWindow::MainWindow(Model model, QWidget *parent) : QWidget(parent)
 {
     setupUi(this, model);
@@ -32,8 +31,9 @@ void MainWindow::setupUi(QWidget* MainWindow, Model &model)
 
     retranslateUi(MainWindow);
 
-    QObject::connect(improveButton, SIGNAL(clicked()), view, SLOT(update()));
-    QObject::connect(resetButton, SIGNAL(clicked()), view, SLOT(update()));
+    // FIXME Tratar de conectar el slot de view para que reaccione con el botón de mainwindow
+    QObject::connect(improveButton, SIGNAL(clicked()), view, SLOT(View::improve));
+    QObject::connect(resetButton, SIGNAL(clicked()), view, SLOT(View::reset));
 
     QMetaObject::connectSlotsByName(MainWindow);
 }                                                           // setupUi
