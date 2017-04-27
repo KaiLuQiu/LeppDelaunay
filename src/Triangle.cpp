@@ -1,3 +1,4 @@
+#include <iostream>
 #include <vector>
 #include <algorithm>
 
@@ -37,4 +38,11 @@ double Triangle::minAngle()
     std::vector<double>::iterator minimal = std::min_element(std::begin(angles), std::end(angles));
 
     return *minimal;
+}
+
+std::ostream &operator<<(std::ostream &out, const Triangle & t)
+{
+    out << "Triangle (" << t.m_va << ", " << t.m_vb << ", " << t.m_vc << ")";
+
+    return out;
 }

@@ -7,6 +7,7 @@ class Triangle
 {
     friend class Model;
     friend class Canvas;
+    friend std::ostream &operator<<(std::ostream &out, const Triangle & t);
 
 public:
     /**

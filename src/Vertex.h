@@ -1,11 +1,13 @@
 #ifndef _VERTEX_H_
 #define _VERTEX_H_
 
+#include <iostream>
 class Vertex
 {
     friend class Triangle;
     friend class Edge;
     friend class Canvas;
+    friend std::ostream &operator<<(std::ostream &out, const Vertex & vertex);
 
 public:
     /**

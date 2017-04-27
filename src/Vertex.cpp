@@ -17,3 +17,10 @@ void Vertex::operator=(const Vertex& t)
     m_x = t.m_x;
     m_y = t.m_y;
 }
+
+std::ostream &operator<<(std::ostream &out, const Vertex & vertex)
+{
+    out << "Vertex(" << vertex.m_x << ", " << vertex.m_y << ")";
+
+    return out;
+}

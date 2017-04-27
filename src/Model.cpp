@@ -80,7 +80,6 @@ vector<Triangle> Model::findBadTriangles(double tolerance)
 
     for (Triangle t : m_triangulation)
     {
-        std::cout << t.minAngle() << std::endl;
         if (t.minAngle() < tolerance)
         {
             badTriangles.push_back(t);

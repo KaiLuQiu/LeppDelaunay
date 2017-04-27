@@ -1,11 +1,14 @@
 #ifndef _EDGE_H_
 #define _EDGE_H_
+
+#include <iostream>
 #include "Vertex.h"
 #include "Angle.h"
 
 class Edge
 {
     friend class Triangle;
+    friend std::ostream &operator<<(std::ostream &out, const Edge & edge);
 
 public:
     Edge(Vertex& a, Vertex& b);
