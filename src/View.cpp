@@ -2,10 +2,8 @@
 #include <QMouseEvent>
 #include <QPainter>
 
-#include "Model.h"
 #include "View.h"
 #include "Triangle.h"
-#include "Constants.h"
 
 View::View(Model& model, QWidget* parent) : QWidget(parent), m_model(model)
 {

@@ -1,7 +1,6 @@
 #include <QApplication>
 #include "View.h"
 #include "MainWindow.h"
-#include "Constants.h"
 
 int main(int argc, char **argv)
 {
