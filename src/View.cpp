@@ -42,6 +42,8 @@ void View::setupUi(QWidget* View, Model &model)
     resetButton = new QPushButton(View);
     resetButton->setObjectName(QStringLiteral("resetButton"));
     resetButton->setGeometry(QRect(1080, 750, 150, 50));
+//     FIXME Este texto (int) hay que enviarlo al modelo con SIGNAL/SLOT
+//     tolerance->text().toInt();
 
     retranslateUi(View);
 
@@ -50,13 +52,13 @@ void View::setupUi(QWidget* View, Model &model)
     QObject::connect(resetButton, &QAbstractButton::clicked, canvas, &Canvas::reset);
 
     QMetaObject::connectSlotsByName(View);
-}                                                           // setupUi
+}
 
 void View::retranslateUi(QWidget *View)
 {
     View->setWindowTitle(QApplication::translate("View", "Lepp-Delaunay", Q_NULLPTR));
 
-    label->setText(QApplication::translate("Form", "Ingrese \303\241ngulo de tolerancia (en grados):", Q_NULLPTR));
+    label->setText(QApplication::translate("Form", "Ingrese ángulo de tolerancia (en grados):", Q_NULLPTR));
     improveButton->setText(QApplication::translate("View", "Improve!", Q_NULLPTR));
     resetButton->setText(QApplication::translate("View", "Reset", Q_NULLPTR));
-}                                                           // retranslateUi
+}
