@@ -2,22 +2,23 @@
 #include "MainWindow.h"
 #include "Constants.h"
 
-MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
+
+MainWindow::MainWindow(Model model, QWidget *parent) : QWidget(parent)
 {
-    setupUi(this);
+    setupUi(this, model);
 }
 
 MainWindow::~MainWindow()
 {
 }
 
-void MainWindow::setupUi(QWidget* MainWindow)
+void MainWindow::setupUi(QWidget* MainWindow, Model model)
 {
     if (MainWindow->objectName().isEmpty())
         MainWindow->setObjectName(QStringLiteral("MainWindow"));
     MainWindow->resize(Constants::WIDTH, Constants::HEIGHT + 80);
 
-    view = new QWidget(MainWindow);
+    view = new View(model, MainWindow);
     view->setObjectName(QStringLiteral("view"));
     view->setGeometry(QRect(-1, -1, Constants::WIDTH, Constants::HEIGHT));
 

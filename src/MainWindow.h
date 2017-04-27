@@ -3,18 +3,22 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include "View.h"
+#include "Model.h"
+
+class View;
 
 class MainWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget* parent = 0);
+    MainWindow(Model model, QWidget* parent = 0);
     ~MainWindow();
-    void setupUi(QWidget *MainWindow);
+    void setupUi(QWidget *MainWindow, Model model);
     void retranslateUi(QWidget *MainWindow);
 
-    QWidget *view;
+    View *view;
     QPushButton *improveButton;
     QPushButton *resetButton;
 

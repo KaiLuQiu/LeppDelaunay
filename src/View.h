@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "Model.h"
+#include "MainWindow.h"
 
 class View : public QWidget
 {
