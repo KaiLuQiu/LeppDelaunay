@@ -234,33 +234,6 @@ src/Canvas.cpp.s:
 	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Canvas.cpp.s
 .PHONY : src/Canvas.cpp.s
 
-src/MainWindow.o: src/MainWindow.cpp.o
-
-.PHONY : src/MainWindow.o
-
-# target to build an object file
-src/MainWindow.cpp.o:
-	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/MainWindow.cpp.o
-.PHONY : src/MainWindow.cpp.o
-
-src/MainWindow.i: src/MainWindow.cpp.i
-
-.PHONY : src/MainWindow.i
-
-# target to preprocess a source file
-src/MainWindow.cpp.i:
-	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/MainWindow.cpp.i
-.PHONY : src/MainWindow.cpp.i
-
-src/MainWindow.s: src/MainWindow.cpp.s
-
-.PHONY : src/MainWindow.s
-
-# target to generate assembly for a file
-src/MainWindow.cpp.s:
-	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/MainWindow.cpp.s
-.PHONY : src/MainWindow.cpp.s
-
 src/Model.o: src/Model.cpp.o
 
 .PHONY : src/Model.o
@@ -342,6 +315,33 @@ src/Vertex.cpp.s:
 	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Vertex.cpp.s
 .PHONY : src/Vertex.cpp.s
 
+src/View.o: src/View.cpp.o
+
+.PHONY : src/View.o
+
+# target to build an object file
+src/View.cpp.o:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/View.cpp.o
+.PHONY : src/View.cpp.o
+
+src/View.i: src/View.cpp.i
+
+.PHONY : src/View.i
+
+# target to preprocess a source file
+src/View.cpp.i:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/View.cpp.i
+.PHONY : src/View.cpp.i
+
+src/View.s: src/View.cpp.s
+
+.PHONY : src/View.s
+
+# target to generate assembly for a file
+src/View.cpp.s:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/View.cpp.s
+.PHONY : src/View.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -389,9 +389,6 @@ help:
 	@echo "... src/Canvas.o"
 	@echo "... src/Canvas.i"
 	@echo "... src/Canvas.s"
-	@echo "... src/MainWindow.o"
-	@echo "... src/MainWindow.i"
-	@echo "... src/MainWindow.s"
 	@echo "... src/Model.o"
 	@echo "... src/Model.i"
 	@echo "... src/Model.s"
@@ -401,6 +398,9 @@ help:
 	@echo "... src/Vertex.o"
 	@echo "... src/Vertex.i"
 	@echo "... src/Vertex.s"
+	@echo "... src/View.o"
+	@echo "... src/View.i"
+	@echo "... src/View.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
