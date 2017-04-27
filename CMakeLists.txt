@@ -13,6 +13,7 @@ set(tarea_2_SRC
   src/main.cpp
   src/Angle.cpp
   src/Canvas.cpp
+  src/Edge.cpp
   src/Model.cpp
   src/Vertex.cpp
   src/Triangle.cpp

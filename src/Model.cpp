@@ -3,12 +3,7 @@
 #include <sstream>
 
 #include "Model.h"
-
 #include <iostream>
-
-Model::Model() : Model("../Triangles.txt")
-{
-}
 
 Model::Model(string fileName)
 {
@@ -26,8 +21,6 @@ Model::~Model()
 // FIXME Re-parsear la tarea para saber si esta es la idea base
 void Model::improve(int tolerance)
 {
-    std::cout << "Recibi orden de improve(tolerance)" << std::endl;
-
     vector<Triangle> s = findBadTriangles(tolerance);
 
     for (Triangle &t0 : s)
@@ -81,10 +74,21 @@ void Model::parse(string fileName)
     }
 }
 
-// TODO findBadTriangles
 vector<Triangle> Model::findBadTriangles(double tolerance)
 {
-    return m_triangulation;
+    vector<Triangle> badTriangles;
+
+    for (Triangle t : m_triangulation)
+    {
+        std::cout << t.minAngle() << std::endl;
+        if (t.minAngle() < tolerance)
+        {
+            badTriangles.push_back(t);
+        }
+    }
+    std::cout << "Triangulación de " << m_triangulation.size() << " tiene " << badTriangles.size() << " triángulos malos." << std::endl;
+
+    return badTriangles;
 }
 
 // TODO lepp

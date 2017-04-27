@@ -261,6 +261,33 @@ src/Canvas.cpp.s:
 	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Canvas.cpp.s
 .PHONY : src/Canvas.cpp.s
 
+src/Edge.o: src/Edge.cpp.o
+
+.PHONY : src/Edge.o
+
+# target to build an object file
+src/Edge.cpp.o:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Edge.cpp.o
+.PHONY : src/Edge.cpp.o
+
+src/Edge.i: src/Edge.cpp.i
+
+.PHONY : src/Edge.i
+
+# target to preprocess a source file
+src/Edge.cpp.i:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Edge.cpp.i
+.PHONY : src/Edge.cpp.i
+
+src/Edge.s: src/Edge.cpp.s
+
+.PHONY : src/Edge.s
+
+# target to generate assembly for a file
+src/Edge.cpp.s:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Edge.cpp.s
+.PHONY : src/Edge.cpp.s
+
 src/Model.o: src/Model.cpp.o
 
 .PHONY : src/Model.o
@@ -419,6 +446,9 @@ help:
 	@echo "... src/Canvas.o"
 	@echo "... src/Canvas.i"
 	@echo "... src/Canvas.s"
+	@echo "... src/Edge.o"
+	@echo "... src/Edge.i"
+	@echo "... src/Edge.s"
 	@echo "... src/Model.o"
 	@echo "... src/Model.i"
 	@echo "... src/Model.s"

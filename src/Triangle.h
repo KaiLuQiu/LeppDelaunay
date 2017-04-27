@@ -31,6 +31,7 @@ public:
     ~Triangle();
 
     void operator=(const Triangle &t);
+    double minAngle(void);
 
 private:
     Vertex m_va;

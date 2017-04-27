@@ -4,6 +4,7 @@
 class Vertex
 {
     friend class Triangle;
+    friend class Edge;
     friend class Canvas;
 
 public:

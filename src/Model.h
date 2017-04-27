@@ -14,17 +14,11 @@ class Model
 
 public:
     /**
-    * @brief Constructor vacío. Aquí se parsea una triangulación _default_ desde disco.
-    *
-    */
-    Model();
-
-    /**
     * @brief Constructor con nombre de archivo a ser parseado.
     *
     * @param fileName p_fileName: Nombre del archivo.
     */
-    Model(string fileName);
+    Model(string fileName = "../Triangles.txt");
 
     /**
     * @brief Constructor con triangulación.

@@ -49,6 +49,7 @@ void View::setupUi(QWidget* View, Model &model)
     QObject::connect(this, &View::emitToleranceEnter, canvas, &Canvas::improve);
     QObject::connect(improveButton, &QAbstractButton::clicked, this, &View::prepareSend);
     QObject::connect(this, &View::emitTolerance, canvas, &Canvas::improve);
+    QObject::connect(resetButton, &QAbstractButton::clicked, canvas, &Canvas::reset);
 
     QMetaObject::connectSlotsByName(View);
 }

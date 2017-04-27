@@ -15,14 +15,14 @@ double Angle::toDegrees()
     {
         return m_val;
     }
-    return m_val * 180 / M_PI;
+    return m_val * 180.0 / M_PI;
 }
 
 double Angle::toRadians()
 {
     if (m_isDegree)
     {
-        return m_val * M_PI / 180;
+        return m_val * M_PI / 180.0;
     }
     return m_val;
 }
