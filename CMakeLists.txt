@@ -11,6 +11,7 @@ find_package(Qt5Widgets REQUIRED)
 
 set(tarea_2_SRC
   src/main.cpp
+  src/Angle.cpp
   src/Canvas.cpp
   src/Model.cpp
   src/Vertex.cpp

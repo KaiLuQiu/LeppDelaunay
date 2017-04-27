@@ -54,7 +54,7 @@ public:
 
 
 private:
-    vector<Triangle> findBadTriangles();
+    vector<Triangle> findBadTriangles(double tolerance);
     vector<Triangle> lepp(vector<Triangle> s, Triangle &t0);
     Vertex selectCentroid(Triangle &t1, Triangle &t2);
     void insertCentroid(Vertex centroid);

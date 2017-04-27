@@ -207,6 +207,33 @@ lepp-delaunay_automoc.cpp.s:
 	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/lepp-delaunay_automoc.cpp.s
 .PHONY : lepp-delaunay_automoc.cpp.s
 
+src/Angle.o: src/Angle.cpp.o
+
+.PHONY : src/Angle.o
+
+# target to build an object file
+src/Angle.cpp.o:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Angle.cpp.o
+.PHONY : src/Angle.cpp.o
+
+src/Angle.i: src/Angle.cpp.i
+
+.PHONY : src/Angle.i
+
+# target to preprocess a source file
+src/Angle.cpp.i:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Angle.cpp.i
+.PHONY : src/Angle.cpp.i
+
+src/Angle.s: src/Angle.cpp.s
+
+.PHONY : src/Angle.s
+
+# target to generate assembly for a file
+src/Angle.cpp.s:
+	$(MAKE) -f CMakeFiles/lepp-delaunay.dir/build.make CMakeFiles/lepp-delaunay.dir/src/Angle.cpp.s
+.PHONY : src/Angle.cpp.s
+
 src/Canvas.o: src/Canvas.cpp.o
 
 .PHONY : src/Canvas.o
@@ -386,6 +413,9 @@ help:
 	@echo "... lepp-delaunay_automoc.o"
 	@echo "... lepp-delaunay_automoc.i"
 	@echo "... lepp-delaunay_automoc.s"
+	@echo "... src/Angle.o"
+	@echo "... src/Angle.i"
+	@echo "... src/Angle.s"
 	@echo "... src/Canvas.o"
 	@echo "... src/Canvas.i"
 	@echo "... src/Canvas.s"

@@ -24,7 +24,7 @@ Model::~Model()
 // FIXME Re-parsear la tarea para saber si esta es la idea base
 void Model::improve()
 {
-    vector<Triangle> s = findBadTriangles();
+    vector<Triangle> s = findBadTriangles(0.0);
 
     for (Triangle &t0 : s)
     {
@@ -78,7 +78,7 @@ void Model::parse(string fileName)
 }
 
 // TODO findBadTriangles
-vector<Triangle> Model::findBadTriangles()
+vector<Triangle> Model::findBadTriangles(double tolerance)
 {
     return m_triangulation;
 }
