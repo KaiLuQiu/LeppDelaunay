@@ -22,9 +22,9 @@ Model::~Model()
 }
 
 // FIXME Re-parsear la tarea para saber si esta es la idea base
-void Model::improve()
+void Model::improve(int tolerance)
 {
-    vector<Triangle> s = findBadTriangles(0.0);
+    vector<Triangle> s = findBadTriangles(tolerance);
 
     for (Triangle &t0 : s)
     {

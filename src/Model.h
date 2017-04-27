@@ -42,8 +42,9 @@ public:
     /**
     * @brief Algoritmo base de Lepp-Delaunay.
     *
+    * @param tolerance p_tolerance: Tolerancia en grados.
     */
-    void improve(void);
+    void improve(int tolerance = 30);
 
     /**
     * @brief Parser de triangulaciones.

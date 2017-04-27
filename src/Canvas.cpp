@@ -39,9 +39,9 @@ void Canvas::mousePressEvent(QMouseEvent* event)
     Q_UNUSED(event);
 }
 
-void Canvas::improve()
+void Canvas::improve(const int tolerance)
 {
-    m_model.improve();
+    m_model.improve(tolerance);
     update();
 }
 

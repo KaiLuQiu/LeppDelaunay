@@ -2,7 +2,10 @@
 #define _VIEW_H_
 
 #include <QWidget>
+#include <QLabel>
+#include <QLineEdit>
 #include <QPushButton>
+
 #include "Canvas.h"
 #include "Model.h"
 
@@ -18,6 +21,8 @@ public:
 
 private:
     Canvas *canvas;
+    QLabel *label;
+    QLineEdit *tolerance;
     QPushButton *improveButton;
     QPushButton *resetButton;
 
