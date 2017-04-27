@@ -8,7 +8,6 @@ int main(int argc, char **argv)
     QApplication app(argc, argv);
     Model model;
     MainWindow mainwindow(model);
-//     View window(model, &mainwindow);
 
     mainwindow.show();
 

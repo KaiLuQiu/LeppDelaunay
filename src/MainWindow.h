@@ -15,9 +15,10 @@ class MainWindow : public QWidget
 public:
     MainWindow(Model model, QWidget* parent = 0);
     ~MainWindow();
-    void setupUi(QWidget *MainWindow, Model model);
+    void setupUi(QWidget *MainWindow, Model &model);
     void retranslateUi(QWidget *MainWindow);
 
+private:
     View *view;
     QPushButton *improveButton;
     QPushButton *resetButton;

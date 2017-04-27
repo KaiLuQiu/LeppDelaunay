@@ -12,7 +12,7 @@ MainWindow::~MainWindow()
 {
 }
 
-void MainWindow::setupUi(QWidget* MainWindow, Model model)
+void MainWindow::setupUi(QWidget* MainWindow, Model &model)
 {
     if (MainWindow->objectName().isEmpty())
         MainWindow->setObjectName(QStringLiteral("MainWindow"));
