@@ -9,6 +9,9 @@ MainWindow::MainWindow(Model model, QWidget *parent) : QWidget(parent)
 
 MainWindow::~MainWindow()
 {
+    delete view;
+    delete improveButton;
+    delete resetButton;
 }
 
 void MainWindow::setupUi(QWidget* MainWindow, Model &model)
@@ -31,9 +34,8 @@ void MainWindow::setupUi(QWidget* MainWindow, Model &model)
 
     retranslateUi(MainWindow);
 
-    // FIXME Tratar de conectar el slot de view para que reaccione con el botón de mainwindow
-    QObject::connect(improveButton, SIGNAL(clicked()), view, SLOT(View::improve));
-    QObject::connect(resetButton, SIGNAL(clicked()), view, SLOT(View::reset));
+    QObject::connect(improveButton, &QAbstractButton::clicked, view, &View::improve);
+    QObject::connect(resetButton, &QAbstractButton::clicked, view, &View::reset);
 
     QMetaObject::connectSlotsByName(MainWindow);
 }                                                           // setupUi

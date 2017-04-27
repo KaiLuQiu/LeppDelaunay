@@ -9,7 +9,7 @@
 
 View::View(Model& model, QWidget* parent) : QWidget(parent), m_model(model)
 {
-    m_model.improve();
+    reset();
 }
 
 void View::paintEvent(QPaintEvent *e)
@@ -42,10 +42,10 @@ void View::mousePressEvent(QMouseEvent* event)
 
 void View::improve()
 {
-    std::cout << "Improved" << std::endl;
+    m_model.improve();
 }
 
 void View::reset()
 {
-    std::cout << "Resetted" << std::endl;
+    m_model.parse();
 }

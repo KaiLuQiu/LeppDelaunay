@@ -50,7 +50,7 @@ public:
     *
     * @param fileName p_fileName: Nombre del archivo a parsear.
     */
-    void parse(string fileName);
+    void parse(string fileName = "../triangles.txt");
 
 
 private:
