@@ -31,9 +31,15 @@ double Triangle::minAngle()
     Edge ca(m_vc, m_va);
 
     std::vector<double> angles;
-    angles.push_back(ab.angleAgainst(bc).toDegrees());
-    angles.push_back(bc.angleAgainst(ca).toDegrees());
-    angles.push_back(ca.angleAgainst(ab).toDegrees());
+    angles.push_back(ab.angleAgainst(bc, ca).toDegrees());
+    angles.push_back(bc.angleAgainst(ca, ab).toDegrees());
+    angles.push_back(ca.angleAgainst(ab, bc).toDegrees());
+
+    for (double d : angles)
+    {
+        std::cout << d << std::endl;
+    }
+    std::cout << std::endl;
 
     std::vector<double>::iterator minimal = std::min_element(std::begin(angles), std::end(angles));
 

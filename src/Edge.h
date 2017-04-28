@@ -14,7 +14,7 @@ public:
     Edge(Vertex& a, Vertex& b);
     ~Edge();
 
-    Angle angleAgainst(const Edge &other);
+    Angle angleAgainst(const Edge &other, const Edge &aux);
 
 private:
     void detectLength();

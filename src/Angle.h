@@ -1,8 +1,11 @@
 #ifndef _ANGLE_H_
 #define _ANGLE_H_
 
+#include <iostream>
+
 class Angle
 {
+    friend std::ostream &operator<<(std::ostream &out, Angle &angle);
 public:
     /**
     * @brief Constructor de ángulo
@@ -10,7 +13,7 @@ public:
     * @param val p_val: Valor numérico del ángulo
     * @param isDegree p_isDegree: Confirma si es grado o radián.
     */
-    Angle(double val, bool isDegree = true);
+    Angle(double val, const bool isDegree = true);
     ~Angle();
 
     /**
@@ -28,7 +31,7 @@ public:
     double toRadians(void);
 
 private:
-    int m_val;
+    double m_val;
     bool m_isDegree;
 };
 

@@ -12,25 +12,18 @@ Edge::~Edge()
 {
 }
 
-// FIXME Todo está bien, excepto que los ángulos se calculan mal...
-Angle Edge::angleAgainst(const Edge& other)
+Angle Edge::angleAgainst(const Edge& other, const Edge &aux)
 {
-    Vertex p1 = this->m_va;
-    Vertex p2 = this->m_vb;
-    Vertex p3 = other.m_vb;
+    // Ley de cosenos:
+    // gamma = arccos(a^2 + b^2 - c^2 / 2*a*b)
 
-    double ax = p1.m_x - p2.m_x;
-    double ay = p1.m_y - p2.m_y;
-    double bx = p1.m_x - p3.m_x;
-    double by = p1.m_y - p3.m_y;
+    double a = (*this).m_length;
+    double b = other.m_length;
+    double c = aux.m_length;
 
-    std::cout << ax << std::endl;
-    std::cout << ay << std::endl;
-    std::cout << bx << std::endl;
-    std::cout << by << std::endl;
-    std::cout << std::endl;
+    Angle ans(acos((pow(a, 2) + pow(b, 2) - pow(c, 2)) / (2 * a * b)), false);
 
-    return Angle((acos((ax * bx + ay * by) / (m_length * other.m_length))), false);
+    return ans;
 }
 
 void Edge::detectLength()
