@@ -53,12 +53,12 @@ std::ostream &operator<<(std::ostream &out, const Triangle & t)
     return out;
 }
 
-bool Triangle::operator==(const Triangle& t)
+bool Triangle::operator==(const Triangle& t) const
 {
     return (m_va == t.m_va and m_vb == t.m_vb and m_vc == t.m_vc);
 }
 
-bool Triangle::operator!=(const Triangle& t)
+bool Triangle::operator!=(const Triangle& t) const
 {
     return not (*this == t);
 }

@@ -38,7 +38,7 @@ public:
     *
     * @param tolerance p_tolerance: Tolerancia en grados.
     */
-    void improve(int tolerance = 30);
+    void improve(double tolerance = 30.0);
 
     /**
     * @brief Parser de triangulaciones.

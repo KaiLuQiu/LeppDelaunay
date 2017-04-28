@@ -16,7 +16,7 @@ public:
     Canvas(Model &model, QWidget* parent = 0);
 
 public slots:
-    void improve(const int tolerance);
+    void improve(const double tolerance);
     void reset();
 
 protected:

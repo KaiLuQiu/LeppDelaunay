@@ -12,7 +12,7 @@ Edge::~Edge()
 {
 }
 
-Angle Edge::angleAgainst(const Edge& other, const Edge &aux)
+Angle Edge::angleAgainst(const Edge& other, const Edge &aux) const
 {
     // Ley de cosenos:
     // gamma = arccos(a^2 + b^2 - c^2 / 2*a*b)

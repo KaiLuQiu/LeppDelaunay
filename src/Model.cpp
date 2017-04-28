@@ -1,6 +1,7 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
+#include <cassert>
 
 #include "Model.h"
 #include <iostream>
@@ -19,7 +20,7 @@ Model::~Model()
 }
 
 // FIXME Re-parsear la tarea para saber si esta es la idea base
-void Model::improve(int tolerance)
+void Model::improve(double tolerance)
 {
     vector<Triangle> s = findBadTriangles(tolerance);
 
@@ -98,10 +99,8 @@ vector<Triangle> Model::lepp(vector<Triangle> s, Triangle &t0)
 
 Vertex Model::selectCentroid(Triangle& t1, Triangle& t2)
 {
-    if (t1 == t2)
-    {
-        throw invalid_argument("Mismos triángulos!");
-    }
+    assert(t1 != t2);
+
     Vertex a(t1.m_va);
     Vertex b(t1.m_vb);
     Vertex c(t1.m_vc);

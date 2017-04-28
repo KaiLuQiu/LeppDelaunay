@@ -33,7 +33,7 @@ void View::setupUi(QWidget* View, Model &model)
     tolerance = new QLineEdit(View);
     tolerance->setObjectName(QStringLiteral("tolerance"));
     tolerance->setText(QString("30"));
-    tolerance->setGeometry(QRect(650, 750, 150, 50));
+    tolerance->setGeometry(QRect(550, 750, 150, 50));
 
     improveButton = new QPushButton(View);
     improveButton->setObjectName(QStringLiteral("improveButton"));
@@ -58,19 +58,19 @@ void View::retranslateUi(QWidget *View)
 {
     View->setWindowTitle(QApplication::translate("View", "Lepp-Delaunay", Q_NULLPTR));
 
-    label->setText(QApplication::translate("Form", "Ingrese ángulo de tolerancia (en grados):", Q_NULLPTR));
+    label->setText(QApplication::translate("Form", "Insert tolerance angle (in degrees):", Q_NULLPTR));
     improveButton->setText(QApplication::translate("View", "Improve!", Q_NULLPTR));
     resetButton->setText(QApplication::translate("View", "Reset", Q_NULLPTR));
 }
 
 void View::prepareSend()
 {
-    const int tol = tolerance->text().toInt();
+    const double tol = tolerance->text().toDouble();
     emit emitTolerance(tol);
 }
 
 void View::prepareSendEnter()
 {
-    const int tol = tolerance->text().toInt();
+    const double tol = tolerance->text().toDouble();
     emit emitToleranceEnter(tol);
 }

@@ -31,10 +31,34 @@ public:
     */
     ~Triangle();
 
+    /**
+    * @brief Overload de asignación.
+    *
+    * @param t p_t: Triángulo a igualar.
+    */
     void operator=(const Triangle &t);
-    bool operator==(const Triangle &t);
-    bool operator!=(const Triangle &t);
 
+    /**
+    * @brief Overload de comparación de igualdad.
+    *
+    * @param t p_t: Triángulo a comparar.
+    * @return bool True si son iguales.
+    */
+    bool operator==(const Triangle &t) const;
+
+    /**
+    * @brief Overload de comparación de desigualdad.
+    *
+    * @param t p_t: Triángulo a comparar.
+    * @return bool True si son distintos.
+    */
+    bool operator!=(const Triangle &t) const;
+
+    /**
+    * @brief Detecta mínimo ángulo del triángulo.
+    *
+    * @return double El menor ángulo encontrado.
+    */
     double minAngle(void);
 
 private:

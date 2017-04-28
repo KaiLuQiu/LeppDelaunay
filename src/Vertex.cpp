@@ -25,12 +25,12 @@ std::ostream &operator<<(std::ostream &out, const Vertex & vertex)
     return out;
 }
 
-bool Vertex::operator==(const Vertex& v)
+bool Vertex::operator==(const Vertex& v) const
 {
     return (m_x == v.m_x and m_y == v.m_y);
 }
 
-bool Vertex::operator!=(const Vertex& v)
+bool Vertex::operator!=(const Vertex& v) const
 {
     return not (*this == v);
 }
