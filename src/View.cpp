@@ -20,7 +20,7 @@ void View::setupUi(QWidget* View, Model &model)
 {
     if (View->objectName().isEmpty())
         View->setObjectName(QStringLiteral("View"));
-    View->resize(Constants::WIDTH, Constants::HEIGHT + 80);
+    View->setMinimumSize(Constants::WIDTH, Constants::HEIGHT + 80);
 
     canvas = new Canvas(model, View);
     canvas->setObjectName(QStringLiteral("canvas"));
@@ -28,20 +28,20 @@ void View::setupUi(QWidget* View, Model &model)
 
     label = new QLabel(View);
     label->setObjectName(QStringLiteral("label"));
-    label->setGeometry(QRect(50, 750, 500, 50));
+    label->setGeometry(QRect(50, 740, 500, 50));
 
     tolerance = new QLineEdit(View);
     tolerance->setObjectName(QStringLiteral("tolerance"));
     tolerance->setText(QString("30"));
-    tolerance->setGeometry(QRect(550, 750, 150, 50));
+    tolerance->setGeometry(QRect(550, 740, 150, 50));
 
     improveButton = new QPushButton(View);
     improveButton->setObjectName(QStringLiteral("improveButton"));
-    improveButton->setGeometry(QRect(850, 750, 150, 50));
+    improveButton->setGeometry(QRect(850, 740, 150, 50));
 
     resetButton = new QPushButton(View);
     resetButton->setObjectName(QStringLiteral("resetButton"));
-    resetButton->setGeometry(QRect(1080, 750, 150, 50));
+    resetButton->setGeometry(QRect(1080, 740, 150, 50));
 
     retranslateUi(View);
 
