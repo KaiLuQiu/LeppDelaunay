@@ -28,9 +28,9 @@ void Canvas::doPainting()
 
     for (Triangle t : m_model.m_triangulation)
     {
-        painter.drawLine(t.m_va.m_x, Constants::HEIGHT - t.m_va.m_y, t.m_vb.m_x, Constants::HEIGHT - t.m_vb.m_y);
-        painter.drawLine(t.m_vb.m_x, Constants::HEIGHT - t.m_vb.m_y, t.m_vc.m_x, Constants::HEIGHT - t.m_vc.m_y);
-        painter.drawLine(t.m_vc.m_x, Constants::HEIGHT - t.m_vc.m_y, t.m_va.m_x, Constants::HEIGHT - t.m_va.m_y);
+        painter.drawLine(QPoint(t.m_va.m_x, Constants::HEIGHT - t.m_va.m_y), QPoint(t.m_vb.m_x, Constants::HEIGHT - t.m_vb.m_y));
+        painter.drawLine(QPoint(t.m_vb.m_x, Constants::HEIGHT - t.m_vb.m_y), QPoint(t.m_vc.m_x, Constants::HEIGHT - t.m_vc.m_y));
+        painter.drawLine(QPoint(t.m_vc.m_x, Constants::HEIGHT - t.m_vc.m_y), QPoint(t.m_va.m_x, Constants::HEIGHT - t.m_va.m_y));
     }
 }
 
