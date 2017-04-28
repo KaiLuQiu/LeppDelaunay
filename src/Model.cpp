@@ -2,9 +2,9 @@
 #include <vector>
 #include <sstream>
 #include <cassert>
+#include <QDebug>
 
 #include "Model.h"
-#include <iostream>
 
 Model::Model(string fileName)
 {
@@ -86,7 +86,8 @@ vector<Triangle> Model::findBadTriangles(double tolerance)
             badTriangles.push_back(t);
         }
     }
-    std::cout << "Triangulación de " << m_triangulation.size() << " tiene " << badTriangles.size() << " triángulos malos." << std::endl;
+
+    qDebug() << "Triangulación de" << m_triangulation.size() << "triángulos tiene" << badTriangles.size() << "triángulos malos.";
 
     return badTriangles;
 }

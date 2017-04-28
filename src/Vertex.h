@@ -31,8 +31,27 @@ public:
      */
     ~Vertex();
 
+    /**
+    * @brief Overload de asignación.
+    *
+    * @param v p_v: Vertex a igualar.
+    */
     void operator=(const Vertex &v);
+
+    /**
+    * @brief Overload de comparación de igualdad.
+    *
+    * @param v p_v: Vertex a comparar.
+    * @return bool True si son iguales.
+    */
     bool operator==(const Vertex &v) const;
+
+    /**
+    * @brief Overload de comparación de desigualdad.
+    *
+    * @param v p_v: Vertex a comparar.
+    * @return bool True si son distintos.
+    */
     bool operator!=(const Vertex &v) const;
 
 private:

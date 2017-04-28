@@ -35,13 +35,13 @@ protected:
     void mousePressEvent(QMouseEvent * event) override;
 
 private:
-    Model m_model;
-
     /**
     * @brief Genera el "pintado" del widget. Llamado por paintEvent.
     *
     */
     void doPainting();
+
+    Model m_model;
 };
 
 #endif // _CANVAS_H_

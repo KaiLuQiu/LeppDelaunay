@@ -1,4 +1,3 @@
-#include <iostream>
 #include <vector>
 #include <algorithm>
 
@@ -34,12 +33,6 @@ double Triangle::minAngle()
     angles.push_back(ab.angleAgainst(bc, ca).toDegrees());
     angles.push_back(bc.angleAgainst(ca, ab).toDegrees());
     angles.push_back(ca.angleAgainst(ab, bc).toDegrees());
-
-    for (double d : angles)
-    {
-        std::cout << d << std::endl;
-    }
-    std::cout << std::endl;
 
     std::vector<double>::iterator minimal = std::min_element(std::begin(angles), std::end(angles));
 
