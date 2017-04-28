@@ -96,10 +96,25 @@ vector<Triangle> Model::lepp(vector<Triangle> s, Triangle &t0)
     return s;
 }
 
-// TODO selectCentroid
 Vertex Model::selectCentroid(Triangle& t1, Triangle& t2)
 {
-    return Vertex();
+    if (t1 == t2)
+    {
+        throw invalid_argument("Mismos triángulos!");
+    }
+    Vertex a(t1.m_va);
+    Vertex b(t1.m_vb);
+    Vertex c(t1.m_vc);
+    Vertex d;
+
+    if (t2.m_va != a)
+        d = Vertex(t2.m_va);
+    else if (t2.m_vb != a)
+        d = Vertex(t2.m_vb);
+    else
+        d = Vertex(t2.m_vc);
+
+    return Vertex((a.m_x + b.m_x + c.m_x + d.m_x / 4.0), (a.m_y + b.m_y + c.m_y + d.m_y / 4.0));
 }
 
 // TODO insertCentroid

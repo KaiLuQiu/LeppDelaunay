@@ -32,6 +32,9 @@ public:
     ~Triangle();
 
     void operator=(const Triangle &t);
+    bool operator==(const Triangle &t);
+    bool operator!=(const Triangle &t);
+
     double minAngle(void);
 
 private:

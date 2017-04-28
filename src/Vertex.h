@@ -7,6 +7,7 @@ class Vertex
     friend class Triangle;
     friend class Edge;
     friend class Canvas;
+    friend class Model;
     friend std::ostream &operator<<(std::ostream &out, const Vertex & vertex);
 
 public:
@@ -30,7 +31,9 @@ public:
      */
     ~Vertex();
 
-    void operator=(const Vertex &t);
+    void operator=(const Vertex &v);
+    bool operator==(const Vertex &v);
+    bool operator!=(const Vertex &v);
 
 private:
     int m_x;
