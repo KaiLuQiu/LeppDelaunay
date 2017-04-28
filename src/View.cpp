@@ -37,7 +37,7 @@ void View::setupUi(QWidget* View, Model &model)
 
     improveButton = new QPushButton(View);
     improveButton->setObjectName(QStringLiteral("improveButton"));
-    improveButton->setGeometry(QRect(880, 750, 150, 50));
+    improveButton->setGeometry(QRect(850, 750, 150, 50));
 
     resetButton = new QPushButton(View);
     resetButton->setObjectName(QStringLiteral("resetButton"));
