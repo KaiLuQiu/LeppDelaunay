@@ -96,9 +96,9 @@ p, li { white-space: pre-wrap; }
  <connections>
   <connection>
    <sender>tolerance</sender>
-   <signal>copyAvailable(bool)</signal>
-   <receiver>canvas</receiver>
-   <slot>repaint()</slot>
+   <signal>returnPressed()</signal>
+   <receiver>this</receiver>
+   <slot>prepareSendEnter()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>696</x>
@@ -113,8 +113,8 @@ p, li { white-space: pre-wrap; }
   <connection>
    <sender>improveButton</sender>
    <signal>clicked()</signal>
-   <receiver>canvas</receiver>
-   <slot>update()</slot>
+   <receiver>this</receiver>
+   <slot>prepareSend()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>954</x>
@@ -130,7 +130,7 @@ p, li { white-space: pre-wrap; }
    <sender>resetButton</sender>
    <signal>clicked()</signal>
    <receiver>canvas</receiver>
-   <slot>show()</slot>
+   <slot>reset()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>1203</x>

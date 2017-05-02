@@ -16,34 +16,34 @@ View::~View()
     delete tolerance;
 }
 
-void View::setupUi(QWidget* View, Model &model)
+void View::setupUi(QWidget* view, Model &model)
 {
-    if (View->objectName().isEmpty())
-        View->setObjectName(QStringLiteral("View"));
-    View->setMinimumSize(Constants::WIDTH, Constants::HEIGHT + 80);
+    if (view->objectName().isEmpty())
+        view->setObjectName(QStringLiteral("View"));
+    view->setMinimumSize(Constants::WIDTH, Constants::HEIGHT + 80);
 
-    canvas = new Canvas(model, View);
+    canvas = new Canvas(model, view);
     canvas->setObjectName(QStringLiteral("canvas"));
     canvas->setGeometry(QRect(-1, -1, Constants::WIDTH, Constants::HEIGHT));
 
-    label = new QLabel(View);
+    label = new QLabel(view);
     label->setObjectName(QStringLiteral("label"));
     label->setGeometry(QRect(50, 740, 500, 50));
 
-    tolerance = new QLineEdit(View);
+    tolerance = new QLineEdit(view);
     tolerance->setObjectName(QStringLiteral("tolerance"));
     tolerance->setText(QString("30"));
     tolerance->setGeometry(QRect(550, 740, 150, 50));
 
-    improveButton = new QPushButton(View);
+    improveButton = new QPushButton(view);
     improveButton->setObjectName(QStringLiteral("improveButton"));
     improveButton->setGeometry(QRect(850, 740, 150, 50));
 
-    resetButton = new QPushButton(View);
+    resetButton = new QPushButton(view);
     resetButton->setObjectName(QStringLiteral("resetButton"));
     resetButton->setGeometry(QRect(1080, 740, 150, 50));
 
-    retranslateUi(View);
+    retranslateUi(view);
 
     QObject::connect(tolerance, &QLineEdit::returnPressed, this, &View::prepareSendEnter);
     QObject::connect(this, &View::emitToleranceEnter, canvas, &Canvas::improve);
@@ -51,12 +51,12 @@ void View::setupUi(QWidget* View, Model &model)
     QObject::connect(this, &View::emitTolerance, canvas, &Canvas::improve);
     QObject::connect(resetButton, &QAbstractButton::clicked, canvas, &Canvas::reset);
 
-    QMetaObject::connectSlotsByName(View);
+    QMetaObject::connectSlotsByName(view);
 }
 
-void View::retranslateUi(QWidget *View)
+void View::retranslateUi(QWidget *view)
 {
-    View->setWindowTitle(QApplication::translate("View", "Lepp-Delaunay", Q_NULLPTR));
+    view->setWindowTitle(QApplication::translate("View", "Lepp-Delaunay", Q_NULLPTR));
 
     label->setText(QApplication::translate("Form", "Insert tolerance angle (in degrees):", Q_NULLPTR));
     improveButton->setText(QApplication::translate("View", "Improve!", Q_NULLPTR));
