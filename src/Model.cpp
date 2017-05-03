@@ -107,18 +107,29 @@ vector<Triangle> Model::findBadTriangles(double tolerance)
     return badTriangles;
 }
 
-// TODO lepp
+// FIXME lepp
 //  Cuando se devuelve t3 -> t4 -> t3,  estos son los terminales
 vector<Triangle> Model::lepp(Triangle &t0, bool &borderFlag)
 {
     vector<Triangle> leppList;
     leppList.push_back(t0);
 
+    Edge longest = t0.m_longestEdge;
+
     for (Triangle &t : m_triangulation)
     {
-        if (t == t0)
-            continue;
-        Edge longest = t.m_longestEdge;
+        // Si ya lo consideré, no lo agrego de nuevo
+        if (find(m_triangulation.begin(), m_triangulation.end(), t) != m_triangulation.end())
+        {
+            continue;                                       // Ya contenido
+        } else {
+            /* v does not contain x */
+        }
+
+        if (t.m_longestEdge == longest)                     // FIXME El más largo de t0 no es el más largo del resto!
+        {
+            leppList.push_back(t);
+        }
         // TODO Encontrar triángulos por arista
         borderFlag = true;
     }

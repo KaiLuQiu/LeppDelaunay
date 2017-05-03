@@ -35,6 +35,9 @@ public:
     */
     Angle angleAgainst(const Edge &other, const Edge &aux) const;
 
+    bool operator==(const Edge &other);
+    bool operator!=(const Edge &other);
+
 private:
     /**
     * @brief Calcula el largo del Edge y lo asigna internamente.

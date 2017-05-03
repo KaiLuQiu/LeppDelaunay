@@ -39,3 +39,13 @@ std::ostream &operator<<(std::ostream &out, const Edge & edge)
 
     return out;
 }
+
+bool Edge::operator==(const Edge& other)
+{
+    return (m_va == other.m_va and m_vb == other.m_vb) or (m_va == other.m_vb and m_vb == other.m_va);
+}
+
+bool Edge::operator!=(const Edge& other)
+{
+    return not (*this == other);
+}
