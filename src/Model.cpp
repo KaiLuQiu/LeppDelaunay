@@ -21,16 +21,21 @@ Model::~Model()
 {
 }
 
-// FIXME Re-parsear la tarea para saber si esta es la idea base
 void Model::improve(double tolerance)
 {
     vector<Triangle> s = findBadTriangles(tolerance);
 
-    for (Triangle &t0 : s)
+    // Mientras hayan triángulos malos
+    while (s.size() > 0)
     {
+        // Agarramos uno de ellos y mejoramos
+        Triangle &t0 = s.front();
+
+        // Buscamos lista Lepp
         bool borderFlag = false;
         vector<Triangle> leppList = lepp(t0, borderFlag);
 
+        // Insertamos centroide o centro según caso detectado
         if (borderFlag)
         {
 
@@ -41,7 +46,8 @@ void Model::improve(double tolerance)
             insertCentroid(leppList);
         }
 
-        updateBadTriangles(s);
+        // Actualizamos los malos triángulos
+        updateBadTriangles(s, tolerance);
         break;
     }
 }
@@ -127,11 +133,14 @@ void Model::insertCenter(vector<Triangle> &lepp)
     vector<Triangle> division = t.divideOnLongestEdge();
 
     // Borramos este triángulo
-    lepp.erase(remove(lepp.begin(), lepp.end(), t), lepp.end());
+//     lepp.erase(remove(lepp.begin(), lepp.end(), t), lepp.end());
+    m_triangulation.erase(remove(m_triangulation.begin(), m_triangulation.end(), t), m_triangulation.end());
 
     // Insertamos los dos nuevos
-    lepp.push_back(division.front());
-    lepp.push_back(division.back());
+//     lepp.push_back(division.front());
+//     lepp.push_back(division.back());
+    m_triangulation.push_back(division.front());
+    m_triangulation.push_back(division.back());
 }
 
 void Model::insertCentroid(vector<Triangle>& lepp)
@@ -175,6 +184,7 @@ void Model::insertCentroid(vector<Triangle>& lepp)
 
 }
 
-void Model::updateBadTriangles(vector<Triangle>& badTriangles)
+void Model::updateBadTriangles(vector<Triangle>& badTriangles, const double tolerance)
 {
+    badTriangles = findBadTriangles(tolerance);
 }

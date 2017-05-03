@@ -85,7 +85,7 @@ private:
     *
     * @param badTriangles p_badTriangles: Lista (S) de triángulos malos
     */
-    void updateBadTriangles(vector<Triangle> &badTriangles);
+    void updateBadTriangles(vector<Triangle> &badTriangles, const double tolerance);
 
     vector<Triangle> m_triangulation;
 };
