@@ -25,7 +25,7 @@ void Model::improve(double tolerance)
 {
     m_s = findBadTriangles(tolerance);
 
-    int test = 0;
+    int iterations = 0;
     // Mientras hayan triángulos malos
     while (m_s.size() > 0)
     {
@@ -49,9 +49,10 @@ void Model::improve(double tolerance)
 
         // Actualizamos los malos triángulos
         updateBadTriangles(m_s, tolerance);
-        cout << m_s.size() << endl;
+        cout << "Quedan " << m_s.size() << " triángulos malos." << endl;
 
-        if (test++ == 4000)
+        // Detener iteraciones excesivas
+        if (++iterations == 2000)
             break;
     }
 }
@@ -136,11 +137,14 @@ vector<Triangle> Model::lepp(Triangle &t0, bool &borderFlag)
                 leppList.push_back(t);
 
                 // Encontré los triángulos terminales, retorno
-                if (longest == t.m_longestEdge)             // FIXME Sospecho que el penúltimo triángulo no es terminal necesariamente
+                if (longest == t.m_longestEdge)
                 {
                     borderFlag = false;
                     return leppList;
                 }
+
+                // Actualizo Edge más largo
+                longest = t.m_longestEdge;
             }
         }
     }
