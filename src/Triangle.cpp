@@ -75,6 +75,15 @@ std::vector<Triangle> Triangle::divideOnLongestEdge()
     return div;
 }
 
+bool Triangle::hasEdge(Edge &edge)
+{
+    Edge ab(m_va, m_vb);
+    Edge bc(m_vb, m_vc);
+    Edge ca(m_vc, m_va);
+
+    return (edge == ab or edge == bc or edge == ca);
+}
+
 std::ostream &operator<<(std::ostream &out, const Triangle &t)
 {
     out << "Triangle (" << t.m_va << ", " << t.m_vb << ", " << t.m_vc << ")";

@@ -63,6 +63,15 @@ public:
     */
     std::vector<Triangle> divideOnLongestEdge(void);
 
+
+    /**
+    * @brief Detecta si existe este 'edge' en el triángulo.
+    *
+    * @param edge p_edge: Edge a detectar.
+    * @return bool True si existe.
+    */
+    bool hasEdge(Edge &edge);
+
 private:
     void setLongestEdge();
 
