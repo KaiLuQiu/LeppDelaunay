@@ -81,12 +81,11 @@ private:
     void insertCentroid(vector<Triangle> &lepp);
 
     /**
-    * @brief TODO
+    * @brief Revisa nuevamente los triángulos después de una inserción por Lepp.
     *
-    * @param badTriangles p_badTriangles:...
-    * @return std::vector< Triangle >
+    * @param badTriangles p_badTriangles: Lista (S) de triángulos malos
     */
-    vector<Triangle> updateBadTriangles(vector<Triangle> badTriangles);
+    void updateBadTriangles(vector<Triangle> &badTriangles);
 
     vector<Triangle> m_triangulation;
 };

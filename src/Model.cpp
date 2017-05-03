@@ -175,8 +175,6 @@ void Model::insertCentroid(vector<Triangle>& lepp)
 
 }
 
-// TODO updateBadTriangles
-vector<Triangle> Model::updateBadTriangles(vector<Triangle> badTriangles)
+void Model::updateBadTriangles(vector<Triangle>& badTriangles)
 {
-    return badTriangles;
 }
