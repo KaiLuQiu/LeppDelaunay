@@ -6,7 +6,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
 # Enable profiling
-set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -pg)
+# set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -pg)
 
 # Find the QtWidgets library
 find_package(Qt5Widgets REQUIRED)
