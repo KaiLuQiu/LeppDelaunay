@@ -1,19 +1,41 @@
 #include <vector>
 #include <algorithm>
 
-#include "Edge.h"
 #include "Triangle.h"
 
-Triangle::Triangle()
+Triangle::Triangle(Vertex a, Vertex b, Vertex c) : m_va(a), m_vb(b), m_vc(c), m_longestEdge(Edge(m_va, m_vb)), m_notInLongestEdge(m_vc)
 {
-}
-
-Triangle::Triangle(Vertex a, Vertex b, Vertex c) : m_va(a), m_vb(b), m_vc(c)
-{
+    setLongestEdge();
 }
 
 Triangle::~Triangle()
 {
+}
+
+void Triangle::setLongestEdge()
+{
+    Edge ab(m_va, m_vb);
+    Edge bc(m_vb, m_vc);
+    Edge ca(m_vc, m_va);
+
+    // Longest AB
+    if (ab.m_length > bc.m_length and ab.m_length > ca.m_length)
+    {
+        m_longestEdge = ab;
+        m_notInLongestEdge = m_vc;
+    }
+    // Longest BC
+    else if (bc.m_length > ca.m_length and bc.m_length > ab.m_length)
+    {
+        m_longestEdge = bc;
+        m_notInLongestEdge = m_va;
+    }
+    // Longest CA
+    else
+    {
+        m_longestEdge = ca;
+        m_notInLongestEdge = m_vb;
+    }
 }
 
 void Triangle::operator=(const Triangle& t)
@@ -21,6 +43,8 @@ void Triangle::operator=(const Triangle& t)
     m_va = t.m_va;
     m_vb = t.m_vb;
     m_vc = t.m_vc;
+    m_longestEdge = t.m_longestEdge;
+    m_notInLongestEdge = t.m_notInLongestEdge;
 }
 
 double Triangle::minAngle()
@@ -39,7 +63,19 @@ double Triangle::minAngle()
     return *minimal;
 }
 
-std::ostream &operator<<(std::ostream &out, const Triangle & t)
+std::vector<Triangle> Triangle::divideOnLongestEdge()
+{
+    std::vector<Triangle> div;
+
+    Vertex mid((m_longestEdge.m_va.m_x + m_longestEdge.m_vb.m_x) / 2, (m_longestEdge.m_va.m_y + m_longestEdge.m_vb.m_y) / 2);
+
+    div.push_back(Triangle(m_longestEdge.m_va, mid, m_notInLongestEdge));
+    div.push_back(Triangle(m_notInLongestEdge, mid, m_longestEdge.m_vb));
+
+    return div;
+}
+
+std::ostream &operator<<(std::ostream &out, const Triangle &t)
 {
     out << "Triangle (" << t.m_va << ", " << t.m_vb << ", " << t.m_vc << ")";
 

@@ -60,12 +60,11 @@ private:
     /**
     * @brief Encuentra una lista de triángulos unidos por la arista más larga.
     *
-    * @param s p_s: Lista de triángulos malos
     * @param t0 p_t0: Triángulo por el cual comienza Lepp.
     * @param borderFlag p_borderFlag: Setea True si la arista terminal se encontró en un borde.
     * @return std::vector< Triangle >
     */
-    vector<Triangle> lepp(vector<Triangle> s, Triangle &t0, bool &borderFlag);
+    vector<Triangle> lepp(Triangle &t0, bool &borderFlag);
 
     /**
      * @brief Encuentra el centro de la arista más larga del último triángulo, lo divide e inserta los 2 nuevos triángulos en la triangulación.

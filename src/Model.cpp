@@ -5,6 +5,8 @@
 #include <QDebug>
 
 #include "Model.h"
+#include "Triangle.h"
+#include "Edge.h"
 
 Model::Model(string fileName)
 {
@@ -27,10 +29,11 @@ void Model::improve(double tolerance)
     for (Triangle &t0 : s)
     {
         bool borderFlag = false;
-        vector<Triangle> leppList = lepp(s, t0, borderFlag);
+        vector<Triangle> leppList = lepp(t0, borderFlag);
 
         if (borderFlag)
         {
+
             insertCenter(leppList);
         }
         else
@@ -85,7 +88,7 @@ vector<Triangle> Model::findBadTriangles(double tolerance)
 {
     vector<Triangle> badTriangles;
 
-    for (Triangle t : m_triangulation)
+    for (Triangle &t : m_triangulation)
     {
         if (t.minAngle() < tolerance)
         {
@@ -100,15 +103,35 @@ vector<Triangle> Model::findBadTriangles(double tolerance)
 
 // TODO lepp
 //  Cuando se devuelve t3 -> t4 -> t3,  estos son los terminales
-vector<Triangle> Model::lepp(vector<Triangle> s, Triangle &t0, bool &borderFlag)
+vector<Triangle> Model::lepp(Triangle &t0, bool &borderFlag)
 {
-    return s;
+    vector<Triangle> leppList;
+    leppList.push_back(t0);
+
+    for (Triangle &t : m_triangulation)
+    {
+        if (t == t0)
+            continue;
+        Edge longest = t.m_longestEdge;
+        // TODO Encontrar triángulos por arista
+        borderFlag = true;
+    }
+
+    return leppList;
 }
 
-// TODO insertCenter
 void Model::insertCenter(vector<Triangle> &lepp)
 {
+    // Dividimos el último triángulo en 2
     Triangle &t = lepp.back();
+    vector<Triangle> division = t.divideOnLongestEdge();
+
+    // Borramos este triángulo
+    lepp.erase(remove(lepp.begin(), lepp.end(), t), lepp.end());
+
+    // Insertamos los dos nuevos
+    lepp.push_back(division.front());
+    lepp.push_back(division.back());
 }
 
 void Model::insertCentroid(vector<Triangle>& lepp)

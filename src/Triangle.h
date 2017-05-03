@@ -2,6 +2,7 @@
 #define _TRIANGLE_H_
 
 #include "Vertex.h"
+#include "Edge.h"
 
 class Triangle
 {
@@ -10,12 +11,6 @@ class Triangle
     friend std::ostream &operator<<(std::ostream &out, const Triangle & t);
 
 public:
-    /**
-    * @brief Constructor Vacío. Inicia triángulos de área 0 en posición (0, 0).
-    *
-    */
-    Triangle();
-
     /**
     * @brief Constructor de triángulos. Recibe los 3 vertex correspondientes.
     *
@@ -61,10 +56,21 @@ public:
     */
     double minAngle(void);
 
+    /**
+    * @brief Detecta el Edge más largo y retorna 2 triángulos divididos en el punto medio de este Edge.
+    *
+    * @return std::vector< Triangle > 2 Triángulos hijos de éste.
+    */
+    std::vector<Triangle> divideOnLongestEdge(void);
+
 private:
+    void setLongestEdge();
+
     Vertex m_va;
     Vertex m_vb;
     Vertex m_vc;
+    Vertex m_notInLongestEdge;
+    Edge m_longestEdge;
 };
 
 #endif // _TRIANGLE_H_
