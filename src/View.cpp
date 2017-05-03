@@ -32,7 +32,7 @@ void View::setupUi(QWidget* view, Model &model)
 
     tolerance = new QLineEdit(view);
     tolerance->setObjectName(QStringLiteral("tolerance"));
-    tolerance->setText(QString("30"));
+    tolerance->setText(QString("10"));
     tolerance->setGeometry(QRect(550, 740, 150, 50));
 
     improveButton = new QPushButton(view);
