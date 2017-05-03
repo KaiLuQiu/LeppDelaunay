@@ -2,7 +2,8 @@
 #include <vector>
 #include <sstream>
 #include <cassert>
-#include <QDebug>
+#include <algorithm>
+#include <iomanip>
 
 #include "Model.h"
 #include "Triangle.h"
@@ -49,10 +50,10 @@ void Model::improve(double tolerance)
 
         // Actualizamos los malos triángulos
         updateBadTriangles(m_s, tolerance);
-        cout << "Quedan " << m_s.size() << " triángulos malos." << endl;
+        cout << "Iteración " << left << setw(6) << iterations << ": Quedan " << m_s.size() << " triángulos malos." << endl;
 
         // Detener iteraciones excesivas
-        if (++iterations == 2000)
+        if (++iterations == 4000)
             break;
     }
 }
@@ -107,11 +108,10 @@ vector<Triangle> Model::findBadTriangles(double tolerance)
         }
     }
 
-    qDebug() << "Triangulación de" << m_triangulation.size() << "triángulos tiene" << badTriangles.size() << "triángulos malos.";
-
     return badTriangles;
 }
 
+// FIXME Optimizar esto, parece que es lo que más demora
 vector<Triangle> Model::lepp(Triangle &t0, bool &borderFlag)
 {
     vector<Triangle> leppList;
@@ -159,18 +159,16 @@ void Model::insertCenter(vector<Triangle> &lepp)
     vector<Triangle> division = t.divideOnLongestEdge();
 
     // Borramos este triángulo
-//     lepp.erase(remove(lepp.begin(), lepp.end(), t), lepp.end());
     m_triangulation.erase(remove(m_triangulation.begin(), m_triangulation.end(), t), m_triangulation.end());
 
     // Insertamos los dos nuevos
-//     lepp.push_back(division.front());
-//     lepp.push_back(division.back());
     m_triangulation.push_back(division.front());
     m_triangulation.push_back(division.back());
 }
 
 void Model::insertCentroid(vector<Triangle>& lepp)
 {
+    // Dividimos los últimos 2 triángulos en 4
     Triangle &t1 = lepp.at(lepp.size() - 1);                // Último
     Triangle &t2 = lepp.at(lepp.size() - 2);                // Penúltimo
 
@@ -192,7 +190,6 @@ void Model::insertCentroid(vector<Triangle>& lepp)
     Vertex centroid((a.m_x + b.m_x + c.m_x + d.m_x / 4.0), (a.m_y + b.m_y + c.m_y + d.m_y / 4.0));
 
     // Creación 4 triángulos
-
     Triangle T1(a, b, centroid);
     Triangle T2(b, c, centroid);
     Triangle T3(c, d, centroid);
@@ -207,7 +204,6 @@ void Model::insertCentroid(vector<Triangle>& lepp)
     m_triangulation.push_back(T2);
     m_triangulation.push_back(T3);
     m_triangulation.push_back(T4);
-
 }
 
 void Model::updateBadTriangles(vector<Triangle>& badTriangles, const double tolerance)
