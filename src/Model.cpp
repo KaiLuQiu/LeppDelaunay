@@ -51,7 +51,7 @@ void Model::improve(double tolerance)
         updateBadTriangles(m_s, tolerance);
         cout << m_s.size() << endl;
 
-        if (test++ == 2)
+        if (test++ == 4000)
             break;
     }
 }
@@ -117,7 +117,6 @@ vector<Triangle> Model::lepp(Triangle &t0, bool &borderFlag)
     leppList.push_back(t0);
 
     Edge longest = t0.m_longestEdge;
-    cout << "Recibí en lepp: " << t0 << endl;
 
     // Asumo caso de borde a menos que se demuestre lo contrario
     borderFlag = true;
