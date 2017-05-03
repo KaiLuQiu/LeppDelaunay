@@ -58,29 +58,28 @@ private:
     vector<Triangle> findBadTriangles(double tolerance);
 
     /**
-    * @brief TODO
+    * @brief Encuentra una lista de triángulos unidos por la arista más larga.
     *
-    * @param s p_s:...
-    * @param t0 p_t0:...
+    * @param s p_s: Lista de triángulos malos
+    * @param t0 p_t0: Triángulo por el cual comienza Lepp.
+    * @param borderFlag p_borderFlag: Setea True si la arista terminal se encontró en un borde.
     * @return std::vector< Triangle >
     */
-    vector<Triangle> lepp(vector<Triangle> s, Triangle &t0);
+    vector<Triangle> lepp(vector<Triangle> s, Triangle &t0, bool &borderFlag);
 
     /**
-    * @brief Encuentra el centroide entre estos 2 triángulos, que deben compartir un Edge.
-    *
-    * @param t1 p_t1: Triángulo 1.
-    * @param t2 p_t2: Triángulo 2.
-    * @return Vertex
-    */
-    Vertex selectCentroid(Triangle &t1, Triangle &t2);
+     * @brief Encuentra el centro de la arista más larga del último triángulo, lo divide e inserta los 2 nuevos triángulos en la triangulación.
+     *
+     * @param lepp p_lepp: Lepp.
+     */
+    void insertCenter(vector<Triangle> &lepp);
 
     /**
-    * @brief Inserta el centroide en la triangulación, creando nuevos triángulos en el proceso.
+    * @brief Encuentra el centroide entre los 2 últimos triángulos, que deben compartir un Edge, divide los 2 triángulos en 4, y los inserta en la triangulación.
     *
-    * @param centroid p_centroid: Centroide.
+    * @param lepp p_lepp: Lepp.
     */
-    void insertCentroid(Vertex centroid);
+    void insertCentroid(vector<Triangle> &lepp);
 
     /**
     * @brief TODO

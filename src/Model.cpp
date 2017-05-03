@@ -26,11 +26,17 @@ void Model::improve(double tolerance)
 
     for (Triangle &t0 : s)
     {
-        vector<Triangle> leppList = lepp(s, t0);
+        bool borderFlag = false;
+        vector<Triangle> leppList = lepp(s, t0, borderFlag);
 
-        const int length = leppList.size();
-        Vertex centroid = selectCentroid(leppList[length - 2], leppList[length - 1]);
-        insertCentroid(centroid);
+        if (borderFlag)
+        {
+            insertCenter(leppList);
+        }
+        else
+        {
+            insertCentroid(leppList);
+        }
 
         updateBadTriangles(s);
         break;
@@ -58,17 +64,17 @@ void Model::parse(string fileName)
         string buf;                                         // Buffer
         stringstream ss(lines.at(i));                       // String dentro de un stream
 
-        vector<string> tokens;                              // Vector de coordenadas (tamaño 6)
+        vector<int> tokens;                                 // Vector de coordenadas (tamaño 6)
 
         while (ss >> buf)                                   // Separamos por espacios
         {
-            tokens.push_back(buf);
+            tokens.push_back(stoi(buf));
         }
 
         // Creamos vértices correspondientes
-        Vertex a(stoi(tokens.at(0)), stoi(tokens.at(1)));
-        Vertex b(stoi(tokens.at(2)), stoi(tokens.at(3)));
-        Vertex c(stoi(tokens.at(4)), stoi(tokens.at(5)));
+        Vertex a(tokens.at(0), tokens.at(1));
+        Vertex b(tokens.at(2), tokens.at(3));
+        Vertex c(tokens.at(4), tokens.at(5));
 
         // Asignamos a la triangulación
         m_triangulation.push_back(Triangle(a, b, c));
@@ -93,13 +99,24 @@ vector<Triangle> Model::findBadTriangles(double tolerance)
 }
 
 // TODO lepp
-vector<Triangle> Model::lepp(vector<Triangle> s, Triangle &t0)
+//  Cuando se devuelve t3 -> t4 -> t3,  estos son los terminales
+vector<Triangle> Model::lepp(vector<Triangle> s, Triangle &t0, bool &borderFlag)
 {
     return s;
 }
 
-Vertex Model::selectCentroid(Triangle& t1, Triangle& t2)
+// TODO insertCenter
+void Model::insertCenter(vector<Triangle> &lepp)
 {
+    Triangle &t = lepp.back();
+}
+
+void Model::insertCentroid(vector<Triangle>& lepp)
+{
+    Triangle &t1 = lepp.at(lepp.size() - 1);                // Último
+    Triangle &t2 = lepp.at(lepp.size() - 2);                // Penúltimo
+
+    // Detección centroide
     assert(t1 != t2);
 
     Vertex a(t1.m_va);
@@ -114,12 +131,25 @@ Vertex Model::selectCentroid(Triangle& t1, Triangle& t2)
     else
         d = Vertex(t2.m_vc);
 
-    return Vertex((a.m_x + b.m_x + c.m_x + d.m_x / 4.0), (a.m_y + b.m_y + c.m_y + d.m_y / 4.0));
-}
+    Vertex centroid((a.m_x + b.m_x + c.m_x + d.m_x / 4.0), (a.m_y + b.m_y + c.m_y + d.m_y / 4.0));
 
-// TODO insertCentroid
-void Model::insertCentroid(Vertex centroid)
-{
+    // Creación 4 triángulos
+
+    Triangle T1(a, b, centroid);
+    Triangle T2(b, c, centroid);
+    Triangle T3(c, d, centroid);
+    Triangle T4(d, a, centroid);
+
+    // Eliminación triángulos t1, t2
+    m_triangulation.erase(remove(m_triangulation.begin(), m_triangulation.end(), t1), m_triangulation.end());
+    m_triangulation.erase(remove(m_triangulation.begin(), m_triangulation.end(), t2), m_triangulation.end());
+
+    // Agregación 4 triángulos
+    m_triangulation.push_back(T1);
+    m_triangulation.push_back(T2);
+    m_triangulation.push_back(T3);
+    m_triangulation.push_back(T4);
+
 }
 
 // TODO updateBadTriangles
