@@ -23,7 +23,6 @@ void Canvas::doPainting()
 
     pen.setStyle(Qt::SolidLine);
     pen.setBrush(Qt::red);
-
     painter.setPen(pen);
 
     for (Triangle t : m_model.m_triangulation)

@@ -88,6 +88,7 @@ private:
     void updateBadTriangles(vector<Triangle> &badTriangles, const double tolerance);
 
     vector<Triangle> m_triangulation;
+    vector<Triangle> m_s;
 };
 
 #endif // _MODEL_H_

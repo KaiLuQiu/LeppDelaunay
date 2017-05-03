@@ -13,7 +13,7 @@ Model::Model(string fileName)
     parse(fileName);
 }
 
-Model::Model(vector<Triangle> triangulation) : m_triangulation(triangulation)
+Model::Model(vector<Triangle> triangulation) : m_triangulation(triangulation), m_s(vector<Triangle>())
 {
 }
 
@@ -23,13 +23,14 @@ Model::~Model()
 
 void Model::improve(double tolerance)
 {
-    vector<Triangle> s = findBadTriangles(tolerance);
+    m_s = findBadTriangles(tolerance);
 
+    int test = 0;
     // Mientras hayan triángulos malos
-    while (s.size() > 0)
+    while (m_s.size() > 0)
     {
         // Agarramos uno de ellos y mejoramos
-        Triangle &t0 = s.front();
+        Triangle &t0 = m_s.front();
 
         // Buscamos lista Lepp
         bool borderFlag = false;
@@ -47,9 +48,11 @@ void Model::improve(double tolerance)
         }
 
         // Actualizamos los malos triángulos
-        updateBadTriangles(s, tolerance);
-        cout << s.size() << endl;
-//         break;
+        updateBadTriangles(m_s, tolerance);
+        cout << m_s.size() << endl;
+
+        if (test++ == 2)
+            break;
     }
 }
 
@@ -108,14 +111,13 @@ vector<Triangle> Model::findBadTriangles(double tolerance)
     return badTriangles;
 }
 
-// FIXME lepp
-//  Cuando se devuelve t3 -> t4 -> t3,  estos son los terminales
 vector<Triangle> Model::lepp(Triangle &t0, bool &borderFlag)
 {
     vector<Triangle> leppList;
     leppList.push_back(t0);
 
     Edge longest = t0.m_longestEdge;
+    cout << "Recibí en lepp: " << t0 << endl;
 
     // Asumo caso de borde a menos que se demuestre lo contrario
     borderFlag = true;
@@ -129,12 +131,13 @@ vector<Triangle> Model::lepp(Triangle &t0, bool &borderFlag)
         }
         else
         {
+            // Si el triángulo que estoy viendo contiene un Edge igual que el mayor ya visto, agrego triángulo a Lepp
             if (t.hasEdge(longest))
             {
                 leppList.push_back(t);
 
                 // Encontré los triángulos terminales, retorno
-                if (longest == t.m_longestEdge)
+                if (longest == t.m_longestEdge)             // FIXME Sospecho que el penúltimo triángulo no es terminal necesariamente
                 {
                     borderFlag = false;
                     return leppList;
