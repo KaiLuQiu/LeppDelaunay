@@ -151,15 +151,23 @@ vector<Triangle> Model::lepp(Triangle &t0, bool &borderFlag)
 
     while (tempT0.m_longestEdgeNeighbour != tempT0)
     {
+        cout << "Test1" << endl;
+        cout << tempT0.m_longestEdgeNeighbour << endl;
+        cout << tempT0.m_longestEdgeNeighbour.m_longestEdgeNeighbour << endl;
         // Caso terminales
         if (tempT0.m_longestEdgeNeighbour.m_longestEdgeNeighbour == tempT0)
         {
+            cout << "Test1.5" << endl;
             borderFlag = false;
             return leppList;
         }
+        cout << "Test2" << endl;
         tempT0 = tempT0.m_longestEdgeNeighbour;
+        cout << "Test3" << endl;
         longest = tempT0.m_longestEdge;
+        cout << "Test4" << endl;
         leppList.push_back(tempT0);
+        cout << "Test5" << endl;
     }
 
     // Si llegamos hasta aquí, significa que tempT0 es el triángulo borde

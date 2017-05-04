@@ -45,6 +45,7 @@ void Triangle::operator=(const Triangle& t)
     m_vc = t.m_vc;
     m_longestEdge = t.m_longestEdge;
     m_notInLongestEdge = t.m_notInLongestEdge;
+//     m_longestEdgeNeighbour = *this;
 }
 
 double Triangle::minAngle()
