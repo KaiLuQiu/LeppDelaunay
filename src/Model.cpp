@@ -136,62 +136,79 @@ vector<Triangle> Model::lepp(Triangle &t0, bool &borderFlag)
 {
     vector<Triangle> leppList;
     leppList.push_back(t0);
+    Triangle tempT0 = t0;
 
     Edge longest = t0.m_longestEdge;
 
     // Asumo caso de borde a menos que se demuestre lo contrario
     borderFlag = true;
 
-    for (Triangle &t : m_triangulation)
+    while (tempT0.m_longestEdgeNeighbour != nullptr)
     {
-        // Si ya lo consideré, no lo agrego de nuevo
-        if (find(m_triangulation.begin(), m_triangulation.end(), t) != m_triangulation.end())
+        // Caso terminales
+        if (*(tempT0.m_longestEdgeNeighbour)->m_longestEdgeNeighbour == tempT0)
         {
-            continue;                                       // Ya está contenido
+            borderFlag = false;
+            return leppList;
         }
-        // Si no, hay que buscar el triángulo vecino con Edge más largo
-        else
-        {
-            // Si el triángulo que estoy viendo contiene un Edge igual que el mayor ya visto, agrego triángulo a Lepp
-            if (t.hasEdge(longest))
-            {
-                // Caso borde
-                if (leppList.back() == t)
-                {
-                    borderFlag = true;
-                    return leppList;
-                }
-
-                leppList.push_back(t);
-
-                // Encontré los triángulos terminales, retorno
-                if (longest == t.m_longestEdge)
-                {
-                    borderFlag = false;
-                    return leppList;
-                }
-
-                // Actualizo Edge más largo
-                longest = t.m_longestEdge;
-            }
-        }
+        tempT0 = *tempT0.m_longestEdgeNeighbour;
+        longest = tempT0.m_longestEdge;
+        leppList.push_back(tempT0);
     }
 
+    // Si llegamos hasta aquí, significa que tempT0 es el triángulo borde
+    borderFlag = true;
     return leppList;
 }
 
 void Model::insertCenter(vector<Triangle> &lepp)
 {
     // Dividimos el último triángulo en 2
-    Triangle &t = lepp.back();
+    Triangle t = lepp.back();
     vector<Triangle> division = t.divideOnLongestEdge();
+    Triangle t1 = division.front();
+    Triangle t2 = division.back();
 
     // Borramos este triángulo
     m_triangulation.erase(remove(m_triangulation.begin(), m_triangulation.end(), t), m_triangulation.end());
 
     // Insertamos los dos nuevos
-    m_triangulation.push_back(division.front());
-    m_triangulation.push_back(division.back());
+    m_triangulation.push_back(t1);
+    m_triangulation.push_back(t2);
+
+    bool checkA = false;
+    bool checkB = false;
+    Triangle &T1 = m_triangulation.at(m_triangulation.size() - 2);
+    Triangle &T2 = m_triangulation.at(m_triangulation.size() - 1);
+
+    for (Triangle &T : m_triangulation)
+    {
+        // Rescatando A
+        if (T.hasEdge(T1.m_longestEdge))
+        {
+            if (*T.m_longestEdgeNeighbour == t)
+            {
+                *T.m_longestEdgeNeighbour = T1;
+            }
+            T1.m_longestEdgeNeighbour = &T;
+            checkA = true;
+        }
+        // Rescatando B
+        if (T.hasEdge(T2.m_longestEdge))
+        {
+            if (*T.m_longestEdgeNeighbour == t)
+            {
+                *T.m_longestEdgeNeighbour = T2;
+            }
+            T2.m_longestEdgeNeighbour = &T;
+            checkB = true;
+        }
+
+        if (checkA and checkB)
+        {
+            break;
+        }
+    }
 }
 
 void Model::insertCentroid(vector<Triangle>& lepp)
