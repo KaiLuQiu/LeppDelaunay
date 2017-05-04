@@ -80,7 +80,7 @@ private:
     Vertex m_vc;
     Vertex m_notInLongestEdge;
     Edge m_longestEdge;
-    Triangle *m_longestEdgeNeighbour;
+    Triangle &m_longestEdgeNeighbour;
 };
 
 #endif // _TRIANGLE_H_

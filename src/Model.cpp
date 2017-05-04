@@ -36,7 +36,13 @@ void Model::preprocessNeighbours()
             }
             else if (n.hasEdge(t.m_longestEdge))
             {
-                t.m_longestEdgeNeighbour = &n;
+                Triangle T = t;
+                Triangle N = n;
+                T.m_longestEdgeNeighbour = N;
+                m_triangulation.erase(remove(m_triangulation.begin(), m_triangulation.end(), T), m_triangulation.end());
+                m_triangulation.erase(remove(m_triangulation.begin(), m_triangulation.end(), N), m_triangulation.end());
+                m_triangulation.push_back(T);
+                m_triangulation.push_back(N);
             }
         }
     }
@@ -143,15 +149,15 @@ vector<Triangle> Model::lepp(Triangle &t0, bool &borderFlag)
     // Asumo caso de borde a menos que se demuestre lo contrario
     borderFlag = true;
 
-    while (tempT0.m_longestEdgeNeighbour != nullptr)
+    while (tempT0.m_longestEdgeNeighbour != tempT0)
     {
         // Caso terminales
-        if (*(tempT0.m_longestEdgeNeighbour)->m_longestEdgeNeighbour == tempT0)
+        if (tempT0.m_longestEdgeNeighbour.m_longestEdgeNeighbour == tempT0)
         {
             borderFlag = false;
             return leppList;
         }
-        tempT0 = *tempT0.m_longestEdgeNeighbour;
+        tempT0 = tempT0.m_longestEdgeNeighbour;
         longest = tempT0.m_longestEdge;
         leppList.push_back(tempT0);
     }
@@ -164,7 +170,7 @@ vector<Triangle> Model::lepp(Triangle &t0, bool &borderFlag)
 void Model::insertCenter(vector<Triangle> &lepp)
 {
     // Dividimos el último triángulo en 2
-    Triangle t = lepp.back();
+    Triangle &t = lepp.back();
     vector<Triangle> division = t.divideOnLongestEdge();
     Triangle t1 = division.front();
     Triangle t2 = division.back();
@@ -186,21 +192,21 @@ void Model::insertCenter(vector<Triangle> &lepp)
         // Rescatando A
         if (T.hasEdge(T1.m_longestEdge))
         {
-            if (*T.m_longestEdgeNeighbour == t)
+            if (T.m_longestEdgeNeighbour == t)
             {
-                *T.m_longestEdgeNeighbour = T1;
+                T.m_longestEdgeNeighbour = T1;
             }
-            T1.m_longestEdgeNeighbour = &T;
+            T1.m_longestEdgeNeighbour = T;
             checkA = true;
         }
         // Rescatando B
         if (T.hasEdge(T2.m_longestEdge))
         {
-            if (*T.m_longestEdgeNeighbour == t)
+            if (T.m_longestEdgeNeighbour == t)
             {
-                *T.m_longestEdgeNeighbour = T2;
+                T.m_longestEdgeNeighbour = T2;
             }
-            T2.m_longestEdgeNeighbour = &T;
+            T2.m_longestEdgeNeighbour = T;
             checkB = true;
         }
 
