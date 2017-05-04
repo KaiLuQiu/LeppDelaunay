@@ -47,6 +47,7 @@ public:
     */
     void parse(string fileName = "../Triangles.txt");
 
+    void preprocessNeighbours(void);
 
 private:
     /**

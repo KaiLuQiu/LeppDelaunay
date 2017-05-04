@@ -12,14 +12,34 @@
 Model::Model(string fileName)
 {
     parse(fileName);
+    preprocessNeighbours();
 }
 
 Model::Model(vector<Triangle> triangulation) : m_triangulation(triangulation), m_s(vector<Triangle>())
 {
+    preprocessNeighbours();
 }
 
 Model::~Model()
 {
+}
+
+void Model::preprocessNeighbours()
+{
+    for (Triangle &t : m_triangulation)
+    {
+        for (Triangle &n : m_triangulation)
+        {
+            if (t == n)
+            {
+                continue;
+            }
+            else if (n.hasEdge(t.m_longestEdge))
+            {
+                t.m_longestEdgeNeighbour = &n;
+            }
+        }
+    }
 }
 
 void Model::improve(double tolerance)
