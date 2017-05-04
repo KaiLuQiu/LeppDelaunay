@@ -129,11 +129,19 @@ vector<Triangle> Model::lepp(Triangle &t0, bool &borderFlag)
         {
             continue;                                       // Ya está contenido
         }
+        // Si no, hay que buscar el triángulo vecino con Edge más largo
         else
         {
             // Si el triángulo que estoy viendo contiene un Edge igual que el mayor ya visto, agrego triángulo a Lepp
             if (t.hasEdge(longest))
             {
+                // Caso borde
+                if (leppList.back() == t)
+                {
+                    borderFlag = true;
+                    return leppList;
+                }
+
                 leppList.push_back(t);
 
                 // Encontré los triángulos terminales, retorno
