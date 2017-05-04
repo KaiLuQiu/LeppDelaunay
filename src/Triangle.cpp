@@ -53,19 +53,19 @@ double Triangle::minAngle()
     Edge bc(m_vb, m_vc);
     Edge ca(m_vc, m_va);
 
-    std::vector<double> angles;
+    vector<double> angles;
     angles.push_back(ab.angleAgainst(bc, ca).toDegrees());
     angles.push_back(bc.angleAgainst(ca, ab).toDegrees());
     angles.push_back(ca.angleAgainst(ab, bc).toDegrees());
 
-    std::vector<double>::iterator minimal = std::min_element(std::begin(angles), std::end(angles));
+    vector<double>::iterator minimal = min_element(begin(angles), end(angles));
 
     return *minimal;
 }
 
-std::vector<Triangle> Triangle::divideOnLongestEdge()
+vector<Triangle> Triangle::divideOnLongestEdge()
 {
-    std::vector<Triangle> div;
+    vector<Triangle> div;
 
     Vertex mid((m_longestEdge.m_va.m_x + m_longestEdge.m_vb.m_x) / 2, (m_longestEdge.m_va.m_y + m_longestEdge.m_vb.m_y) / 2);
 
@@ -84,7 +84,7 @@ bool Triangle::hasEdge(Edge &edge)
     return (edge == ab or edge == bc or edge == ca);
 }
 
-std::ostream &operator<<(std::ostream &out, const Triangle &t)
+ostream &operator<<(ostream &out, const Triangle &t)
 {
     out << "Triangle (" << t.m_va << ", " << t.m_vb << ", " << t.m_vc << ")";
 

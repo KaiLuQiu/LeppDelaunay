@@ -4,11 +4,13 @@
 #include "Vertex.h"
 #include "Edge.h"
 
+using namespace std;
+
 class Triangle
 {
     friend class Model;
     friend class Canvas;
-    friend std::ostream &operator<<(std::ostream &out, const Triangle & t);
+    friend ostream &operator<<(ostream &out, const Triangle & t);
 
 public:
     /**
@@ -59,10 +61,9 @@ public:
     /**
     * @brief Detecta el Edge más largo y retorna 2 triángulos divididos en el punto medio de este Edge.
     *
-    * @return std::vector< Triangle > 2 Triángulos hijos de éste.
+    * @return vector< Triangle > 2 Triángulos hijos de éste.
     */
-    std::vector<Triangle> divideOnLongestEdge(void);
-
+    vector<Triangle> divideOnLongestEdge(void);
 
     /**
     * @brief Detecta si existe este 'edge' en el triángulo.

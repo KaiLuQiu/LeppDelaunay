@@ -5,10 +5,12 @@
 #include "Vertex.h"
 #include "Angle.h"
 
+using namespace std;
+
 class Edge
 {
     friend class Triangle;
-    friend std::ostream &operator<<(std::ostream &out, const Edge & edge);
+    friend ostream &operator<<(ostream &out, const Edge & edge);
 
 public:
     /**

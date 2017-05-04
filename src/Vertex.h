@@ -2,13 +2,16 @@
 #define _VERTEX_H_
 
 #include <iostream>
+
+using namespace std;
+
 class Vertex
 {
     friend class Triangle;
     friend class Edge;
     friend class Canvas;
     friend class Model;
-    friend std::ostream &operator<<(std::ostream &out, const Vertex & vertex);
+    friend ostream &operator<<(ostream &out, const Vertex & vertex);
 
 public:
     /**

@@ -1,7 +1,5 @@
 #include <cmath>
-
 #include "Edge.h"
-#include "Angle.h"
 
 Edge::Edge(Vertex& a, Vertex& b) : m_va(a), m_vb(b)
 {
