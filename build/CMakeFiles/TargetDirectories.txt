@@ -5,4 +5,4 @@
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build/CMakeFiles/rebuild_cache.dir
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build/CMakeFiles/install.dir
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build/CMakeFiles/list_install_components.dir
-/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build/CMakeFiles/lepp-delaunay_automoc.dir
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5501-1 Mallas Geométricas y Aplicaciones/Tarea_2/build/CMakeFiles/lepp-delaunay_autogen.dir
