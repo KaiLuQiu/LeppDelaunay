@@ -81,7 +81,7 @@ public:
     bool hasEdge(Edge &edge);
 
 private:
-    void setLongestEdge(void);
+    Edge getLongestEdge(void);
 
     Vertex m_va;
     Vertex m_vb;
@@ -89,8 +89,8 @@ private:
     Edge m_ab;
     Edge m_bc;
     Edge m_ca;
-    Edge *m_longestEdge = nullptr;
-    Vertex *m_notInLongestEdge = nullptr;
+    Vertex m_notInLongestEdge;
+    Edge m_longestEdge;
     Triangle *m_neighbourLongestEdge = nullptr;
     Triangle *m_ta = nullptr;
     Triangle *m_tb = nullptr;

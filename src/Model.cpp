@@ -24,6 +24,29 @@ Model::~Model()
 
 void Model::improve(double tolerance)
 {
+    /*
+    for (Triangle t : m_triangulation)
+    {
+        cout << "Vecinos de " << t << endl;
+        if (t.m_ta != nullptr)
+            cout << " " << *(t.m_ta) << endl;
+        else
+            cout << " NULL" << endl;
+
+        if (t.m_tb != nullptr)
+            cout << " " << *(t.m_tb) << endl;
+        else
+            cout << " NULL" << endl;
+
+        if (t.m_tc != nullptr)
+            cout << " " << *(t.m_tc) << endl;
+        else
+            cout << " NULL" << endl;
+
+        cout << endl;
+    }
+    */
+
     m_s = findBadTriangles(tolerance);
 
     int iterations = 0;
@@ -37,14 +60,9 @@ void Model::improve(double tolerance)
         bool borderFlag = false;
         vector<Triangle> leppList = lepp(t0, borderFlag);
 
-        cout << "Largo de leppList = " << leppList.size() << endl;
-        cout << leppList.back() << endl;
-        cout << boolalpha << borderFlag << endl;
-
         // Insertamos centroide o centro según caso detectado
         if (borderFlag)
         {
-
             insertCenter(leppList);
         }
         else
@@ -142,19 +160,16 @@ vector<Triangle> Model::findBadTriangles(double tolerance)
     return badTriangles;
 }
 
-// FIXME Optimizar esto, parece que es lo que más demora
 vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
 {
     vector<Triangle> leppList;
-    Edge longest = *t0.m_longestEdge;
+    Edge longest = t0.m_longestEdge;
 
     // Asumo caso de borde a menos que se demuestre lo contrario
     borderFlag = true;
 
     while (true)
     {
-        // Caso borde FIXME donde estoy leyendo el "longest"??
-        cout << "Lepp: t0 = " << t0 << endl;
         if (t0.m_neighbourLongestEdge == nullptr)
         {
             cout << "Caso borde" << endl;
@@ -165,6 +180,7 @@ vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
         // Caso terminales
         else if (t0 == *(t0.m_neighbourLongestEdge->m_neighbourLongestEdge))
         {
+            cout << "Caso terminal" << endl;
             borderFlag = false;
             leppList.push_back(t0);
             leppList.push_back(*(t0.m_neighbourLongestEdge));
@@ -183,6 +199,7 @@ void Model::insertCenter(vector<Triangle> &lepp)
 {
     // Dividimos el último triángulo en 2
     Triangle &t = lepp.back();
+    cout << "Voy a dividir por el centro más largo: " << t << endl;
     vector<Triangle> division = t.divideOnLongestEdge();
 
     // Borramos este triángulo
