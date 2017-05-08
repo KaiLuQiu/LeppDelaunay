@@ -89,8 +89,9 @@ private:
     Edge m_ab;
     Edge m_bc;
     Edge m_ca;
-    Edge m_longestEdge;
-    Vertex m_notInLongestEdge;
+    Edge &m_longestEdge;
+    Vertex &m_notInLongestEdge;
+    Triangle *m_neighbourLongestEdge = nullptr;
     Triangle *m_ta = nullptr;
     Triangle *m_tb = nullptr;
     Triangle *m_tc = nullptr;

@@ -10,8 +10,8 @@ Triangle::Triangle(Vertex a, Vertex b, Vertex c)
     m_ab(Edge(m_va, m_vb)),
     m_bc(Edge(m_vb, m_vc)),
     m_ca(Edge(m_vc, m_va)),
-    m_notInLongestEdge(m_vc),
-    m_longestEdge(m_ab)
+    m_longestEdge(m_ab),
+    m_notInLongestEdge(m_vc)
 {
     setLongestEdge();
 }
@@ -27,18 +27,21 @@ void Triangle::setLongestEdge()
     {
         m_longestEdge = m_ab;
         m_notInLongestEdge = m_vc;
+        m_neighbourLongestEdge = m_tc;
     }
     // Longest BC
     else if (m_bc.m_length > m_ca.m_length and m_bc.m_length > m_ab.m_length)
     {
         m_longestEdge = m_bc;
         m_notInLongestEdge = m_va;
+        m_neighbourLongestEdge = m_ta;
     }
     // Longest CA
     else
     {
         m_longestEdge = m_ca;
         m_notInLongestEdge = m_vb;
+        m_neighbourLongestEdge = m_tb;
     }
 }
 

@@ -53,7 +53,7 @@ void Model::improve(double tolerance)
         cout << "Iteración " << left << setw(6) << iterations << ": Quedan " << m_s.size() << " triángulos malos." << endl;
 
         // Detener iteraciones excesivas
-//         if (++iterations == 4000)
+        if (++iterations == 4000)
             break;
     }
 }
@@ -142,47 +142,31 @@ vector<Triangle> Model::findBadTriangles(double tolerance)
 vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
 {
     vector<Triangle> leppList;
-    leppList.push_back(t0);
-
     Edge longest = t0.m_longestEdge;
-
-    cout << "t0= " << t0 << endl;
-    cout << "longest = " << longest << endl;
-    cout << endl;
 
     // Asumo caso de borde a menos que se demuestre lo contrario
     borderFlag = true;
 
-    for (Triangle &t : m_triangulation)
+    while (true)
     {
-        if (t == t0)                                        // Ya considerado
+        // Caso borde FIXME donde estoy leyendo el "longest"??
+        if (t0.m_neighbourLongestEdge == nullptr)
         {
-            continue;
+            borderFlag = true;
+            leppList.push_back(t0);
+            return leppList;
+        }
+        // Caso terminales
+        else if (t0 == *(t0.m_neighbourLongestEdge->m_neighbourLongestEdge))
+        {
+            borderFlag = false;
+            leppList.push_back(t0);
+            leppList.push_back(*(t0.m_neighbourLongestEdge));
+            return leppList;
         }
         else
         {
-            // Si el triángulo que estoy viendo contiene un Edge igual que el mayor ya visto, agrego triángulo a Lepp
-            if (t.hasEdge(longest))
-            {
-                // Caso borde
-                if (leppList.back() == t)
-                {
-                    borderFlag = true;
-                    return leppList;
-                }
-
-                leppList.push_back(t);
-
-                // Encontré los triángulos terminales, retorno
-                if (longest == t.m_longestEdge)
-                {
-                    borderFlag = false;
-                    return leppList;
-                }
-
-                // Actualizo Edge más largo
-                longest = t.m_longestEdge;
-            }
+            t0 = *(t0.m_neighbourLongestEdge);
         }
     }
 
