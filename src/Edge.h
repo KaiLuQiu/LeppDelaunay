@@ -10,6 +10,7 @@ using namespace std;
 class Edge
 {
     friend class Triangle;
+    friend class Model;
     friend ostream &operator<<(ostream &out, const Edge & edge);
 
 public:

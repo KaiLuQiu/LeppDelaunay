@@ -199,7 +199,6 @@ void Model::insertCenter(vector<Triangle> &lepp)
 {
     // Dividimos el último triángulo en 2
     Triangle &t = lepp.back();
-    cout << "Voy a dividir por el centro más largo: " << t << endl;
     vector<Triangle> division = t.divideOnLongestEdge();
 
     // Borramos este triángulo

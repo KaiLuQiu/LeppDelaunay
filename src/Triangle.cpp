@@ -27,22 +27,23 @@ Edge Triangle::getLongestEdge()
     {
         m_neighbourLongestEdge = m_tc;
         m_notInLongestEdge = m_vc;
-        return m_ab;
+        m_longestEdge = m_ab;
     }
     // Longest BC
     else if (m_bc > m_ca and m_bc > m_ab)
     {
         m_neighbourLongestEdge = m_ta;
         m_notInLongestEdge = m_va;
-        return m_bc;
+        m_longestEdge = m_bc;
     }
     // Longest CA
     else
     {
         m_neighbourLongestEdge = m_tb;
         m_notInLongestEdge = m_vb;
-        return m_ca;
+        m_longestEdge = m_ca;
     }
+    return m_longestEdge;
 }
 
 void Triangle::operator=(const Triangle& t)
@@ -50,6 +51,9 @@ void Triangle::operator=(const Triangle& t)
     m_va = t.m_va;
     m_vb = t.m_vb;
     m_vc = t.m_vc;
+    m_ab = t.m_ab;
+    m_bc = t.m_bc;
+    m_ca = t.m_ca;
 }
 
 double Triangle::minAngle()
@@ -80,16 +84,10 @@ vector<Triangle> Triangle::divideOnLongestEdge()
 {
     vector<Triangle> div;
 
-    cout << " Longest? " << m_longestEdge << endl;
-
     Vertex mid((m_longestEdge.m_va.m_x + m_longestEdge.m_vb.m_x) / 2, (m_longestEdge.m_va.m_y + m_longestEdge.m_vb.m_y) / 2);
 
     div.push_back(Triangle(m_longestEdge.m_va, mid, m_notInLongestEdge));
     div.push_back(Triangle(m_notInLongestEdge, mid, m_longestEdge.m_vb));
-
-    cout << " " << div.front() << endl;
-    cout << " " << div.back() << endl;
-    cout << " + + + " << endl;
 
     return div;
 }
