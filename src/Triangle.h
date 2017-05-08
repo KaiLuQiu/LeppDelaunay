@@ -59,6 +59,13 @@ public:
     double minAngle(void);
 
     /**
+    * @brief Detecta máximo ángulo del triángulo.
+    *
+    * @return double El mayor ángulo encontrado.
+    */
+    double maxAngle(void);
+
+    /**
     * @brief Detecta el Edge más largo y retorna 2 triángulos divididos en el punto medio de este Edge.
     *
     * @return vector< Triangle > 2 Triángulos hijos de éste.
@@ -74,13 +81,19 @@ public:
     bool hasEdge(Edge &edge);
 
 private:
-    void setLongestEdge();
+    void setLongestEdge(void);
 
     Vertex m_va;
     Vertex m_vb;
     Vertex m_vc;
-    Vertex m_notInLongestEdge;
+    Edge m_ab;
+    Edge m_bc;
+    Edge m_ca;
     Edge m_longestEdge;
+    Vertex m_notInLongestEdge;
+    Triangle *m_ta = nullptr;
+    Triangle *m_tb = nullptr;
+    Triangle *m_tc = nullptr;
 };
 
 #endif // _TRIANGLE_H_

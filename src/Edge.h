@@ -19,7 +19,7 @@ public:
     * @param a p_a: Vertex a.
     * @param b p_b: Vertex b.
     */
-    Edge(Vertex& a, Vertex& b);
+    Edge(Vertex a, Vertex b);
 
     /**
     * @brief Destructor de Edge.
@@ -39,6 +39,10 @@ public:
 
     bool operator==(const Edge &other);
     bool operator!=(const Edge &other);
+    bool operator<(const Edge &other);
+    bool operator<=(const Edge &other);
+    bool operator>(const Edge &other);
+    bool operator>=(const Edge &other);
 
 private:
     /**

@@ -3,7 +3,15 @@
 
 #include "Triangle.h"
 
-Triangle::Triangle(Vertex a, Vertex b, Vertex c) : m_va(a), m_vb(b), m_vc(c), m_longestEdge(Edge(m_va, m_vb)), m_notInLongestEdge(m_vc)
+Triangle::Triangle(Vertex a, Vertex b, Vertex c)
+  : m_va(a),
+    m_vb(b),
+    m_vc(c),
+    m_ab(Edge(m_va, m_vb)),
+    m_bc(Edge(m_vb, m_vc)),
+    m_ca(Edge(m_vc, m_va)),
+    m_notInLongestEdge(m_vc),
+    m_longestEdge(m_ab)
 {
     setLongestEdge();
 }
@@ -14,26 +22,22 @@ Triangle::~Triangle()
 
 void Triangle::setLongestEdge()
 {
-    Edge ab(m_va, m_vb);
-    Edge bc(m_vb, m_vc);
-    Edge ca(m_vc, m_va);
-
     // Longest AB
-    if (ab.m_length > bc.m_length and ab.m_length > ca.m_length)
+    if (m_ab.m_length > m_bc.m_length and m_ab.m_length > m_ca.m_length)
     {
-        m_longestEdge = ab;
+        m_longestEdge = m_ab;
         m_notInLongestEdge = m_vc;
     }
     // Longest BC
-    else if (bc.m_length > ca.m_length and bc.m_length > ab.m_length)
+    else if (m_bc.m_length > m_ca.m_length and m_bc.m_length > m_ab.m_length)
     {
-        m_longestEdge = bc;
+        m_longestEdge = m_bc;
         m_notInLongestEdge = m_va;
     }
     // Longest CA
     else
     {
-        m_longestEdge = ca;
+        m_longestEdge = m_ca;
         m_notInLongestEdge = m_vb;
     }
 }
@@ -49,18 +53,26 @@ void Triangle::operator=(const Triangle& t)
 
 double Triangle::minAngle()
 {
-    Edge ab(m_va, m_vb);
-    Edge bc(m_vb, m_vc);
-    Edge ca(m_vc, m_va);
-
     vector<double> angles;
-    angles.push_back(ab.angleAgainst(bc, ca).toDegrees());
-    angles.push_back(bc.angleAgainst(ca, ab).toDegrees());
-    angles.push_back(ca.angleAgainst(ab, bc).toDegrees());
+    angles.push_back(m_ab.angleAgainst(m_bc, m_ca).toDegrees());
+    angles.push_back(m_bc.angleAgainst(m_ca, m_ab).toDegrees());
+    angles.push_back(m_ca.angleAgainst(m_ab, m_bc).toDegrees());
 
     vector<double>::iterator minimal = min_element(begin(angles), end(angles));
 
     return *minimal;
+}
+
+double Triangle::maxAngle()
+{
+    vector<double> angles;
+    angles.push_back(m_ab.angleAgainst(m_bc, m_ca).toDegrees());
+    angles.push_back(m_bc.angleAgainst(m_ca, m_ab).toDegrees());
+    angles.push_back(m_ca.angleAgainst(m_ab, m_bc).toDegrees());
+
+    vector<double>::iterator maximal = max_element(begin(angles), end(angles));
+
+    return *maximal;
 }
 
 vector<Triangle> Triangle::divideOnLongestEdge()
@@ -77,11 +89,7 @@ vector<Triangle> Triangle::divideOnLongestEdge()
 
 bool Triangle::hasEdge(Edge &edge)
 {
-    Edge ab(m_va, m_vb);
-    Edge bc(m_vb, m_vc);
-    Edge ca(m_vc, m_va);
-
-    return (edge == ab or edge == bc or edge == ca);
+    return (edge == m_ab or edge == m_bc or edge == m_ca);
 }
 
 ostream &operator<<(ostream &out, const Triangle &t)

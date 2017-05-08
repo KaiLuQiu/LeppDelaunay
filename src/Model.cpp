@@ -11,6 +11,7 @@
 Model::Model(string fileName)
 {
     parse(fileName);
+    preprocessNeighbours();
 }
 
 Model::Model(vector<Triangle> triangulation) : m_triangulation(triangulation), m_s(vector<Triangle>())
@@ -52,8 +53,35 @@ void Model::improve(double tolerance)
         cout << "Iteración " << left << setw(6) << iterations << ": Quedan " << m_s.size() << " triángulos malos." << endl;
 
         // Detener iteraciones excesivas
-        if (++iterations == 4000)
+//         if (++iterations == 4000)
             break;
+    }
+}
+
+void Model::preprocessNeighbours()
+{
+    for (Triangle &t : m_triangulation)
+    {
+        for (Triangle &n : m_triangulation)
+        {
+            if (t == n)
+                continue;
+            else
+            {
+                if (n.hasEdge(t.m_ab))
+                {
+                    t.m_tc = &n;
+                }
+                else if (n.hasEdge(t.m_bc))
+                {
+                    t.m_ta = &n;
+                }
+                else if (n.hasEdge(t.m_ca))
+                {
+                    t.m_tb = &n;
+                }
+            }
+        }
     }
 }
 
@@ -111,24 +139,26 @@ vector<Triangle> Model::findBadTriangles(double tolerance)
 }
 
 // FIXME Optimizar esto, parece que es lo que más demora
-vector<Triangle> Model::lepp(Triangle &t0, bool &borderFlag)
+vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
 {
     vector<Triangle> leppList;
     leppList.push_back(t0);
 
     Edge longest = t0.m_longestEdge;
 
+    cout << "t0= " << t0 << endl;
+    cout << "longest = " << longest << endl;
+    cout << endl;
+
     // Asumo caso de borde a menos que se demuestre lo contrario
     borderFlag = true;
 
     for (Triangle &t : m_triangulation)
     {
-        // Si ya lo consideré, no lo agrego de nuevo
-        if (find(m_triangulation.begin(), m_triangulation.end(), t) != m_triangulation.end())
+        if (t == t0)                                        // Ya considerado
         {
-            continue;                                       // Ya está contenido
+            continue;
         }
-        // Si no, hay que buscar el triángulo vecino con Edge más largo
         else
         {
             // Si el triángulo que estoy viendo contiene un Edge igual que el mayor ya visto, agrego triángulo a Lepp

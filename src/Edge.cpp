@@ -1,7 +1,7 @@
 #include <cmath>
 #include "Edge.h"
 
-Edge::Edge(Vertex& a, Vertex& b) : m_va(a), m_vb(b)
+Edge::Edge(Vertex a, Vertex b) : m_va(a), m_vb(b)
 {
     detectLength();
 }
@@ -46,4 +46,24 @@ bool Edge::operator==(const Edge& other)
 bool Edge::operator!=(const Edge& other)
 {
     return not (*this == other);
+}
+
+bool Edge::operator<(const Edge& other)
+{
+    return m_length < other.m_length;
+}
+
+bool Edge::operator<=(const Edge& other)
+{
+    return m_length <= other.m_length;
+}
+
+bool Edge::operator>(const Edge& other)
+{
+    return m_length > other.m_length;
+}
+
+bool Edge::operator>=(const Edge& other)
+{
+    return m_length >= other.m_length;
 }

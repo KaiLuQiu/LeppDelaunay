@@ -64,7 +64,7 @@ private:
     * @param borderFlag p_borderFlag: Setea True si la arista terminal se encontró en un borde.
     * @return std::vector< Triangle >
     */
-    vector<Triangle> lepp(Triangle &t0, bool &borderFlag);
+    vector<Triangle> lepp(Triangle t0, bool &borderFlag);
 
     /**
      * @brief Encuentra el centro de la arista más larga del último triángulo, lo divide e inserta los 2 nuevos triángulos en la triangulación.
@@ -86,6 +86,8 @@ private:
     * @param badTriangles p_badTriangles: Lista (S) de triángulos malos
     */
     void updateBadTriangles(vector<Triangle> &badTriangles, const double tolerance);
+
+    void preprocessNeighbours();
 
     vector<Triangle> m_triangulation;
     vector<Triangle> m_s;
