@@ -37,6 +37,10 @@ void Model::improve(double tolerance)
         bool borderFlag = false;
         vector<Triangle> leppList = lepp(t0, borderFlag);
 
+        cout << "Largo de leppList = " << leppList.size() << endl;
+        cout << leppList.back() << endl;
+        cout << boolalpha << borderFlag << endl;
+
         // Insertamos centroide o centro según caso detectado
         if (borderFlag)
         {
@@ -53,7 +57,7 @@ void Model::improve(double tolerance)
         cout << "Iteración " << left << setw(6) << iterations << ": Quedan " << m_s.size() << " triángulos malos." << endl;
 
         // Detener iteraciones excesivas
-        if (++iterations == 4000)
+//         if (++iterations == 4000)
             break;
     }
 }
@@ -142,7 +146,7 @@ vector<Triangle> Model::findBadTriangles(double tolerance)
 vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
 {
     vector<Triangle> leppList;
-    Edge longest = t0.m_longestEdge;
+    Edge longest = *t0.m_longestEdge;
 
     // Asumo caso de borde a menos que se demuestre lo contrario
     borderFlag = true;
@@ -150,8 +154,10 @@ vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
     while (true)
     {
         // Caso borde FIXME donde estoy leyendo el "longest"??
+        cout << "Lepp: t0 = " << t0 << endl;
         if (t0.m_neighbourLongestEdge == nullptr)
         {
+            cout << "Caso borde" << endl;
             borderFlag = true;
             leppList.push_back(t0);
             return leppList;
@@ -229,5 +235,6 @@ void Model::insertCentroid(vector<Triangle>& lepp)
 
 void Model::updateBadTriangles(vector<Triangle>& badTriangles, const double tolerance)
 {
+    preprocessNeighbours();
     badTriangles = findBadTriangles(tolerance);
 }

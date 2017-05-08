@@ -9,9 +9,7 @@ Triangle::Triangle(Vertex a, Vertex b, Vertex c)
     m_vc(c),
     m_ab(Edge(m_va, m_vb)),
     m_bc(Edge(m_vb, m_vc)),
-    m_ca(Edge(m_vc, m_va)),
-    m_longestEdge(m_ab),
-    m_notInLongestEdge(m_vc)
+    m_ca(Edge(m_vc, m_va))
 {
     setLongestEdge();
 }
@@ -23,24 +21,24 @@ Triangle::~Triangle()
 void Triangle::setLongestEdge()
 {
     // Longest AB
-    if (m_ab.m_length > m_bc.m_length and m_ab.m_length > m_ca.m_length)
+    if (m_ab > m_bc and m_ab > m_ca)
     {
-        m_longestEdge = m_ab;
-        m_notInLongestEdge = m_vc;
+        m_longestEdge = &m_ab;
+        m_notInLongestEdge = &m_vc;
         m_neighbourLongestEdge = m_tc;
     }
     // Longest BC
-    else if (m_bc.m_length > m_ca.m_length and m_bc.m_length > m_ab.m_length)
+    else if (m_bc > m_ca and m_bc > m_ab)
     {
-        m_longestEdge = m_bc;
-        m_notInLongestEdge = m_va;
+        m_longestEdge = &m_bc;
+        m_notInLongestEdge = &m_va;
         m_neighbourLongestEdge = m_ta;
     }
     // Longest CA
     else
     {
-        m_longestEdge = m_ca;
-        m_notInLongestEdge = m_vb;
+        m_longestEdge = &m_ca;
+        m_notInLongestEdge = &m_vb;
         m_neighbourLongestEdge = m_tb;
     }
 }
@@ -82,10 +80,10 @@ vector<Triangle> Triangle::divideOnLongestEdge()
 {
     vector<Triangle> div;
 
-    Vertex mid((m_longestEdge.m_va.m_x + m_longestEdge.m_vb.m_x) / 2, (m_longestEdge.m_va.m_y + m_longestEdge.m_vb.m_y) / 2);
+    Vertex mid((m_longestEdge->m_va.m_x + m_longestEdge->m_vb.m_x) / 2, (m_longestEdge->m_va.m_y + m_longestEdge->m_vb.m_y) / 2);
 
-    div.push_back(Triangle(m_longestEdge.m_va, mid, m_notInLongestEdge));
-    div.push_back(Triangle(m_notInLongestEdge, mid, m_longestEdge.m_vb));
+    div.push_back(Triangle(m_longestEdge->m_va, mid, *m_notInLongestEdge));
+    div.push_back(Triangle(*m_notInLongestEdge, mid, m_longestEdge->m_vb));
 
     return div;
 }
