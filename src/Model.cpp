@@ -75,7 +75,7 @@ void Model::improve(double tolerance)
         cout << "Iteración " << left << setw(6) << iterations << ": Quedan " << m_s.size() << " triángulos malos." << endl;
 
         // Detener iteraciones excesivas
-//         if (++iterations == 4000)
+        if (++iterations == 1000)
             break;
     }
 }
@@ -170,7 +170,7 @@ vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
 
     while (true)
     {
-        if (t0.m_neighbourLongestEdge == nullptr)
+        if (t0.m_neighbourLongestEdge == nullptr)           // FIXME Por qué siempre termino aquí?
         {
             cout << "Caso borde" << endl;
             borderFlag = true;
@@ -178,7 +178,7 @@ vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
             return leppList;
         }
         // Caso terminales
-        else if (t0 == *(t0.m_neighbourLongestEdge->m_neighbourLongestEdge))
+        else if (t0 == leppList.back())                     // Igual al último que agregué
         {
             cout << "Caso terminal" << endl;
             borderFlag = false;
