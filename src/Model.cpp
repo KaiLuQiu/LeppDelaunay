@@ -194,18 +194,14 @@ void Model::insertCenter(vector<Triangle> &lepp)
     Triangle &t = lepp.back();
     vector<Triangle> division = t.divideOnLongestEdge();
 
-//     cout << "Antes de borrar: largo de m_triangulation = " << m_triangulation.size() << endl;
+    cout << "Dividí (center) en: " << division.front() << " y " << division.back() << endl;
 
     // Borramos este triángulo
     m_triangulation.erase(remove(m_triangulation.begin(), m_triangulation.end(), t), m_triangulation.end());
 
-//     cout << "Después de borrar: largo de m_triangulation = " << m_triangulation.size() << endl;
-
     // Insertamos los dos nuevos
     m_triangulation.push_back(division.front());
     m_triangulation.push_back(division.back());
-
-//     cout << "Después de agregar: largo de m_triangulation = " << m_triangulation.size() << endl;
 
     updateNeighbours();
 }
@@ -216,6 +212,11 @@ void Model::insertCentroid(vector<Triangle>& lepp)
     Triangle &t1 = lepp.at(lepp.size() - 1);                // Último
     Triangle &t2 = lepp.at(lepp.size() - 2);                // Penúltimo
 
+    cout << "Salieron terminales: " << endl;
+    cout << t1 << endl;
+    cout << t2 << endl;
+    cout << endl;
+
     // Detección centroide
     assert(t1 != t2);
 
@@ -224,14 +225,24 @@ void Model::insertCentroid(vector<Triangle>& lepp)
     Vertex c(t1.m_vc);
     Vertex d;
 
-    if (t2.m_va != a)
+    // Buscamos cual es el distinto para hacer un cuadrilatero
+    if (t2.m_va != a and t2.m_va != b and t2.m_va != c)
         d = Vertex(t2.m_va);
-    else if (t2.m_vb != a)
+    else if (t2.m_vb != a and t2.m_vb != b and t2.m_vb != c)
         d = Vertex(t2.m_vb);
     else
         d = Vertex(t2.m_vc);
 
-    Vertex centroid((a.m_x + b.m_x + c.m_x + d.m_x / 4.0), (a.m_y + b.m_y + c.m_y + d.m_y / 4.0));
+    cout << "Voy a buscar el centroide entre: " << endl;
+    cout << a << endl;
+    cout << b << endl;
+    cout << c << endl;
+    cout << d << endl;
+    cout << endl;
+
+    Vertex centroid((a.m_x + b.m_x + c.m_x + d.m_x) / 4.0, (a.m_y + b.m_y + c.m_y + d.m_y) / 4.0);
+
+    cout << "Me dicen que el centroide es " << centroid << endl;
 
     // Creación 4 triángulos
     Triangle T1(a, b, centroid);
