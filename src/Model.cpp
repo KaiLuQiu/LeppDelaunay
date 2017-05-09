@@ -66,7 +66,7 @@ void Model::improve(double tolerance)
 //         cout << "- - - - - - - - " << endl;
 
         // Detener iteraciones excesivas
-        if (++iterations == 1000)
+        if (++iterations == 500)
             break;
     }
 }
