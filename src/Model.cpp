@@ -49,7 +49,14 @@ void Model::improve(double tolerance)
         }
         else
         {
-            insertCentroid(leppList);
+            if (leppList.at(leppList.size() - 1).maxAngle() > 120 or leppList.at(leppList.size() - 2).maxAngle() > 120)
+            {
+                swapDiagonals(leppList);
+            }
+            else
+            {
+                insertCentroid(leppList);
+            }
         }
 
         // Actualizamos los malos triángulos
@@ -62,6 +69,59 @@ void Model::improve(double tolerance)
         if (++iterations == 1000)
             break;
     }
+}
+
+void Model::swapDiagonals(vector<Triangle>& lepp)
+{
+    Triangle &t1 = lepp.at(lepp.size() - 1);                // Último
+    Triangle &t2 = lepp.at(lepp.size() - 2);                // Penúltimo
+
+    assert(t1 != t2);
+
+    Vertex a(t1.m_va);
+    Vertex b(t1.m_vb);
+    Vertex c(t1.m_vc);
+    Vertex d;
+
+    // Buscamos cual es el distinto para no crear los mismos triángulos
+    if (t2.m_va != a and t2.m_va != b and t2.m_va != c)
+        d = Vertex(t2.m_va);
+    else if (t2.m_vb != a and t2.m_vb != b and t2.m_vb != c)
+        d = Vertex(t2.m_vb);
+    else
+        d = Vertex(t2.m_vc);
+
+    // Buscamos el edge compartido para no usarlo
+    Edge ab(a, b);
+    Edge bc(b, c);
+    Edge ca(c, a);
+
+    Triangle T1(a, b, c);
+    Triangle T2(a, d, c);
+
+    if (t1.hasEdge(ab) and t2.hasEdge(ab))                  // CD sería nueva diagonal
+    {
+        T1 = Triangle(c, d, a);
+        T2 = Triangle(c, d, b);
+    }
+    else if (t1.hasEdge(bc) and t2.hasEdge(bc))             // AD sería nueva diagonal
+    {
+        T1 = Triangle(a, d, b);
+        T2 = Triangle(a, d, c);
+    }
+    else                                                    // BD sería nueva diagonal
+    {
+        T1 = Triangle(b, d, a);
+        T2 = Triangle(b, d, c);
+    }
+
+    // Eliminación triángulos t1, t2
+    m_triangulation.erase(remove(m_triangulation.begin(), m_triangulation.end(), t1), m_triangulation.end());
+    m_triangulation.erase(remove(m_triangulation.begin(), m_triangulation.end(), t2), m_triangulation.end());
+
+    // Agregación triángulos T1, T2
+    m_triangulation.push_back(T1);
+    m_triangulation.push_back(T2);
 }
 
 void Model::updateNeighbours()

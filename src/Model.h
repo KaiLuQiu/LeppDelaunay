@@ -81,6 +81,13 @@ private:
     void insertCentroid(vector<Triangle> &lepp);
 
     /**
+    * @brief Intercambia diagonales entre estos 2 triángulos
+    *
+    * @param lepp p_lepp: Lepp.
+    */
+    void swapDiagonals(vector<Triangle> &lepp);
+
+    /**
     * @brief Revisa nuevamente los triángulos después de una inserción por Lepp.
     *
     * @param badTriangles p_badTriangles: Lista (S) de triángulos malos
