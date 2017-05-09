@@ -56,9 +56,9 @@ void Triangle::operator=(const Triangle& t)
     m_ca = t.m_ca;
     m_notInLongestEdge = t.m_notInLongestEdge;
     m_longestEdge = t.m_longestEdge;
-    m_ta = t.m_ta;
-    m_tb = t.m_tb;
-    m_tc = t.m_tc;
+    m_ta = nullptr;
+    m_tb = nullptr;
+    m_tc = nullptr;
     getLongestEdge();
 }
 
