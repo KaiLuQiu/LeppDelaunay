@@ -87,7 +87,7 @@ private:
     */
     void updateBadTriangles(vector<Triangle> &badTriangles, const double tolerance);
 
-    void preprocessNeighbours();
+    void updateNeighbours();
 
     vector<Triangle> m_triangulation;
     vector<Triangle> m_s;

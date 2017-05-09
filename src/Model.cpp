@@ -11,7 +11,7 @@
 Model::Model(string fileName)
 {
     parse(fileName);
-    preprocessNeighbours();
+    updateNeighbours();
 }
 
 Model::Model(vector<Triangle> triangulation) : m_triangulation(triangulation), m_s(vector<Triangle>())
@@ -75,12 +75,12 @@ void Model::improve(double tolerance)
         cout << "Iteración " << left << setw(6) << iterations << ": Quedan " << m_s.size() << " triángulos malos." << endl;
 
         // Detener iteraciones excesivas
-        if (++iterations == 1000)
+        if (++iterations == 10)
             break;
     }
 }
 
-void Model::preprocessNeighbours()
+void Model::updateNeighbours()
 {
     for (Triangle &t : m_triangulation)
     {
@@ -165,6 +165,8 @@ vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
     vector<Triangle> leppList;
     Edge longest = t0.m_longestEdge;
 
+    leppList.push_back(t0);
+
     // Asumo caso de borde a menos que se demuestre lo contrario
     borderFlag = true;
 
@@ -172,15 +174,33 @@ vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
     {
         if (t0.m_neighbourLongestEdge == nullptr)           // FIXME Por qué siempre termino aquí?
         {
-            cout << "Caso borde" << endl;
+            cout << "Caso borde para t0 = " << t0 << endl;
+            cout << " cuyos vecinos son: " << endl;
+
+            if (t0.m_ta != nullptr)
+                cout << " " << *(t0.m_ta) << endl;
+            else
+                cout << " NULL" << endl;
+
+            if (t0.m_tb != nullptr)
+                cout << " " << *(t0.m_tb) << endl;
+            else
+                cout << " NULL" << endl;
+
+            if (t0.m_tc != nullptr)
+                cout << " " << *(t0.m_tc) << endl;
+            else
+                cout << " NULL" << endl;
+            cout << endl;
+
             borderFlag = true;
             leppList.push_back(t0);
             return leppList;
         }
         // Caso terminales
-        else if (t0 == leppList.back())                     // Igual al último que agregué
+        else if (t0 == *t0.m_neighbourLongestEdge)          // Soy igual al Triangle más largo del vecino
         {
-            cout << "Caso terminal" << endl;
+            cout << "Caso terminal para t0 = " << t0 << endl;
             borderFlag = false;
             leppList.push_back(t0);
             leppList.push_back(*(t0.m_neighbourLongestEdge));
@@ -207,6 +227,8 @@ void Model::insertCenter(vector<Triangle> &lepp)
     // Insertamos los dos nuevos
     m_triangulation.push_back(division.front());
     m_triangulation.push_back(division.back());
+
+    updateNeighbours();
 }
 
 void Model::insertCentroid(vector<Triangle>& lepp)
@@ -247,10 +269,11 @@ void Model::insertCentroid(vector<Triangle>& lepp)
     m_triangulation.push_back(T2);
     m_triangulation.push_back(T3);
     m_triangulation.push_back(T4);
+
+    updateNeighbours();
 }
 
 void Model::updateBadTriangles(vector<Triangle>& badTriangles, const double tolerance)
 {
-    preprocessNeighbours();
     badTriangles = findBadTriangles(tolerance);
 }
