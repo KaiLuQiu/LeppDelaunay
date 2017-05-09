@@ -32,6 +32,8 @@ void Model::improve(double tolerance)
     // Mientras hayan triángulos malos
     while (s.size() > 0)
     {
+        cout << "Iteración " << left << setw(6) << iterations << endl;
+
         // Agarramos uno de ellos y mejoramos
         Triangle t0 = s.front();
         cout << "Analizando malo: " << t0 << endl;
@@ -52,10 +54,12 @@ void Model::improve(double tolerance)
 
         // Actualizamos los malos triángulos
         updateBadTriangles(s, tolerance);
-        cout << "Iteración " << left << setw(6) << iterations << ": Quedan " << s.size() << " triángulos malos." << endl;
+
+        cout << "Quedan " << s.size() << " triángulos malos." << endl;
+        cout << "- - - - - - - - " << endl;
 
         // Detener iteraciones excesivas
-        if (++iterations == 10)
+        if (++iterations == 2)
             break;
     }
 }
@@ -82,6 +86,7 @@ void Model::updateNeighbours()
                 {
                     t.m_tb = &n;
                 }
+                t.getLongestEdge();
             }
         }
     }
@@ -144,9 +149,10 @@ vector<Triangle> Model::findBadTriangles(double tolerance)
 
 vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
 {
-    cout << "Llegó análisis para: " << t0 << endl;
     vector<Triangle> leppList;
     Edge longest = t0.m_longestEdge;
+
+    cout << leppList.size() << endl;
 
     leppList.push_back(t0);
 
@@ -164,7 +170,7 @@ vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
             return leppList;
         }
         // Caso terminales
-        else if (t0 == *t0.m_neighbourLongestEdge)
+        else if (t0 == *t0.m_neighbourLongestEdge->m_neighbourLongestEdge)
         {
             cout << "Caso terminal para t0 = " << t0 << endl;
             borderFlag = false;
@@ -174,6 +180,7 @@ vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
         }
         else
         {
+            cout << "Caso neighbour para t0 = " << t0 << endl;
             t0 = *(t0.m_neighbourLongestEdge);
         }
     }
@@ -248,6 +255,6 @@ void Model::insertCentroid(vector<Triangle>& lepp)
 void Model::updateBadTriangles(vector<Triangle> &bad_s, const double tolerance)
 {
     bad_s.clear();
+    updateNeighbours();
     bad_s = findBadTriangles(tolerance);
-
 }
