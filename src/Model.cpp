@@ -59,7 +59,7 @@ void Model::improve(double tolerance)
         cout << "- - - - - - - - " << endl;
 
         // Detener iteraciones excesivas
-        if (++iterations == 10)
+//         if (++iterations == 100)
             break;
     }
 }
@@ -167,24 +167,16 @@ vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
             leppList.push_back(t0);
             return leppList;
         }
-        // Caso terminales
-        cout << "Test 1" << endl;
-        cout << t0 << endl;
-        cout << "Test 2" << endl;
-        cout << *t0.m_neighbourLongestEdge << endl;
-        cout << "Test 3" << endl;
-//         Test 1
-//         Triangle (Vertex(1280, 0), Vertex(842, 452), Vertex(599, 525))
-//         Test 2
-//         Triangle (Vertex(1280, 720), Vertex(640, 720), Vertex(783, 697))
-//         Test 3
-//         true
-//         Test 4
-//         [1]    4752 segmentation fault (core dumped)  ./lepp-delaunay
-        cout << boolalpha << ((*t0.m_neighbourLongestEdge).m_neighbourLongestEdge == nullptr) << endl;
-        cout << "Test 4" << endl;
-
-        if (t0 == *t0.m_neighbourLongestEdge->m_neighbourLongestEdge)
+        // Casos terminales
+        // Caso raro, investigar
+        else if ((*t0.m_neighbourLongestEdge).m_neighbourLongestEdge == nullptr)
+        {
+            cout << "Caso borde avanzado para t0.neighbour = " << *(t0.m_neighbourLongestEdge) << endl;
+            borderFlag = true;
+            leppList.push_back(*(t0.m_neighbourLongestEdge));
+            return leppList;
+        }
+        else if (t0 == *t0.m_neighbourLongestEdge->m_neighbourLongestEdge)
         {
             cout << "Caso terminal para t0 = " << t0 << endl;
             borderFlag = false;
