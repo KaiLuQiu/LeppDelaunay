@@ -14,7 +14,7 @@ Model::Model(string fileName)
     updateNeighbours();
 }
 
-Model::Model(vector<Triangle> triangulation) : m_triangulation(triangulation), m_s(vector<Triangle>())
+Model::Model(vector<Triangle> triangulation) : m_triangulation(triangulation)
 {
 }
 
@@ -24,37 +24,17 @@ Model::~Model()
 
 void Model::improve(double tolerance)
 {
-    /*
-    for (Triangle t : m_triangulation)
-    {
-        cout << "Vecinos de " << t << endl;
-        if (t.m_ta != nullptr)
-            cout << " " << *(t.m_ta) << endl;
-        else
-            cout << " NULL" << endl;
-
-        if (t.m_tb != nullptr)
-            cout << " " << *(t.m_tb) << endl;
-        else
-            cout << " NULL" << endl;
-
-        if (t.m_tc != nullptr)
-            cout << " " << *(t.m_tc) << endl;
-        else
-            cout << " NULL" << endl;
-
-        cout << endl;
-    }
-    */
-
-    m_s = findBadTriangles(tolerance);
+    // Encuentro triángulos malos
+    vector<Triangle> s;
+    s = findBadTriangles(tolerance);
 
     int iterations = 0;
     // Mientras hayan triángulos malos
-    while (m_s.size() > 0)
+    while (s.size() > 0)
     {
         // Agarramos uno de ellos y mejoramos
-        Triangle &t0 = m_s.front();
+        Triangle t0 = s.front();
+        cout << "Analizando malo: " << t0 << endl;
 
         // Buscamos lista Lepp
         bool borderFlag = false;
@@ -71,8 +51,8 @@ void Model::improve(double tolerance)
         }
 
         // Actualizamos los malos triángulos
-        updateBadTriangles(m_s, tolerance);
-        cout << "Iteración " << left << setw(6) << iterations << ": Quedan " << m_s.size() << " triángulos malos." << endl;
+        updateBadTriangles(s, tolerance);
+        cout << "Iteración " << left << setw(6) << iterations << ": Quedan " << s.size() << " triángulos malos." << endl;
 
         // Detener iteraciones excesivas
         if (++iterations == 10)
@@ -149,6 +129,8 @@ vector<Triangle> Model::findBadTriangles(double tolerance)
 {
     vector<Triangle> badTriangles;
 
+    cout << "Buscando malos entre " << m_triangulation.size() << " triángulos..." << endl;
+
     for (Triangle &t : m_triangulation)
     {
         if (t.minAngle() < tolerance)
@@ -162,6 +144,7 @@ vector<Triangle> Model::findBadTriangles(double tolerance)
 
 vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
 {
+    cout << "Llegó análisis para: " << t0 << endl;
     vector<Triangle> leppList;
     Edge longest = t0.m_longestEdge;
 
@@ -172,33 +155,16 @@ vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
 
     while (true)
     {
-        if (t0.m_neighbourLongestEdge == nullptr)           // FIXME Por qué siempre termino aquí?
+        // Caso borde
+        if (t0.m_neighbourLongestEdge == nullptr)
         {
             cout << "Caso borde para t0 = " << t0 << endl;
-            cout << " cuyos vecinos son: " << endl;
-
-            if (t0.m_ta != nullptr)
-                cout << " " << *(t0.m_ta) << endl;
-            else
-                cout << " NULL" << endl;
-
-            if (t0.m_tb != nullptr)
-                cout << " " << *(t0.m_tb) << endl;
-            else
-                cout << " NULL" << endl;
-
-            if (t0.m_tc != nullptr)
-                cout << " " << *(t0.m_tc) << endl;
-            else
-                cout << " NULL" << endl;
-            cout << endl;
-
             borderFlag = true;
             leppList.push_back(t0);
             return leppList;
         }
         // Caso terminales
-        else if (t0 == *t0.m_neighbourLongestEdge)          // Soy igual al Triangle más largo del vecino
+        else if (t0 == *t0.m_neighbourLongestEdge)
         {
             cout << "Caso terminal para t0 = " << t0 << endl;
             borderFlag = false;
@@ -221,12 +187,18 @@ void Model::insertCenter(vector<Triangle> &lepp)
     Triangle &t = lepp.back();
     vector<Triangle> division = t.divideOnLongestEdge();
 
+//     cout << "Antes de borrar: largo de m_triangulation = " << m_triangulation.size() << endl;
+
     // Borramos este triángulo
     m_triangulation.erase(remove(m_triangulation.begin(), m_triangulation.end(), t), m_triangulation.end());
+
+//     cout << "Después de borrar: largo de m_triangulation = " << m_triangulation.size() << endl;
 
     // Insertamos los dos nuevos
     m_triangulation.push_back(division.front());
     m_triangulation.push_back(division.back());
+
+//     cout << "Después de agregar: largo de m_triangulation = " << m_triangulation.size() << endl;
 
     updateNeighbours();
 }
@@ -273,7 +245,9 @@ void Model::insertCentroid(vector<Triangle>& lepp)
     updateNeighbours();
 }
 
-void Model::updateBadTriangles(vector<Triangle>& badTriangles, const double tolerance)
+void Model::updateBadTriangles(vector<Triangle> &bad_s, const double tolerance)
 {
-    badTriangles = findBadTriangles(tolerance);
+    bad_s.clear();
+    bad_s = findBadTriangles(tolerance);
+
 }
