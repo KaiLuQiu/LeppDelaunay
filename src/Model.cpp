@@ -67,7 +67,8 @@ void Model::improve(double tolerance)
 //         cout << "- - - - - - - - " << endl;
 
         // Detener iteraciones excesivas
-//         if (++iterations == 500)
+        // FIXME Con 20 grados, de la iteración 27 a la 28 algo falla
+        if (++iterations == 28)
             break;
     }
 }
