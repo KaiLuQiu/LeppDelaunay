@@ -30,6 +30,7 @@ void Model::improve(double tolerance)
 
     int iterations = 0;
     // Mientras hayan triángulos malos
+    // FIXME no necesariamente tomaste el mismo t0 a la siguiente iteración!!! (haz un do - while *t0 != nullptr/ respalda t0 y compara si sigue existiendo )
     while (s.size() > 0)
     {
         cout << "Iteración " << left << setw(6) << iterations << endl;
@@ -66,7 +67,7 @@ void Model::improve(double tolerance)
 //         cout << "- - - - - - - - " << endl;
 
         // Detener iteraciones excesivas
-        if (++iterations == 500)
+//         if (++iterations == 500)
             break;
     }
 }
