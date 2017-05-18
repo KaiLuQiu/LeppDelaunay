@@ -50,7 +50,7 @@ void Model::improve(double tolerance)
         }
         else
         {
-            if (leppList.at(leppList.size() - 1).maxAngle() > 120 or leppList.at(leppList.size() - 2).maxAngle() > 120)
+            if (not areLocallyDelaunay(leppList.at(leppList.size() - 2), leppList.at(leppList.size() - 1)))
             {
                 swapDiagonals(leppList);
             }
@@ -71,6 +71,11 @@ void Model::improve(double tolerance)
         if (++iterations == 28)
             break;
     }
+}
+
+bool Model::areLocallyDelaunay(Triangle& t1, Triangle t2)
+{
+    return t1.maxAngle() <= 120 and t2.maxAngle() <= 120;
 }
 
 void Model::swapDiagonals(vector<Triangle>& lepp)

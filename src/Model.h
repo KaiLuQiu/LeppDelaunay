@@ -94,7 +94,20 @@ private:
     */
     void updateBadTriangles(vector<Triangle> &badTriangles, const double tolerance);
 
+    /**
+    * @brief Actualiza los vecinos de los triángulos de la triangulación.
+    *
+    */
     void updateNeighbours();
+
+    /**
+    * @brief Detecta si los 2 triángulos recibidos son localmente Delaunay.
+    *
+    * @param t1 p_t1: Triángulo 1.
+    * @param t2 p_t2: Triángulo 2.
+    * @return bool True si lo son, False si no.
+    */
+    bool areLocallyDelaunay(Triangle &t1, Triangle t2);
 
     vector<Triangle> m_triangulation;
 };
