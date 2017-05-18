@@ -11,7 +11,6 @@
 Model::Model(string fileName)
 {
     parse(fileName);
-    updateNeighbours();
 }
 
 Model::Model(vector<Triangle> triangulation) : m_triangulation(triangulation)
@@ -36,10 +35,10 @@ void Model::improve(double tolerance)
 
         // Agarramos uno de ellos y mejoramos
         Triangle t0 = s.front();
-//         cout << "Analizando malo: " << t0 << endl;
 
         // Buscamos lista Lepp
         bool borderFlag = false;
+
         vector<Triangle> leppList = lepp(t0, borderFlag);
 
         // Insertamos centroide o centro según caso detectado
@@ -56,7 +55,6 @@ void Model::improve(double tolerance)
         updateBadTriangles(s, tolerance);
 
         cout << "Quedan " << s.size() << " triángulos malos." << endl;
-//         cout << "- - - - - - - - " << endl;
 
         // Detener iteraciones excesivas
         if (++iterations == 500)
@@ -128,6 +126,8 @@ void Model::parse(string fileName)
         // Asignamos a la triangulación
         m_triangulation.push_back(Triangle(a, b, c));
     }
+
+    updateNeighbours();
 }
 
 vector<Triangle> Model::findBadTriangles(double tolerance)
@@ -160,23 +160,19 @@ vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
         // Caso borde
         if (t0.m_neighbourLongestEdge == nullptr)
         {
-//             cout << "Caso borde para t0 = " << t0 << endl;
             borderFlag = true;
             leppList.push_back(t0);
             return leppList;
         }
         // Casos terminales
-        // Caso raro, investigar
         else if ((*t0.m_neighbourLongestEdge).m_neighbourLongestEdge == nullptr)
         {
-//             cout << "Caso borde avanzado para t0.neighbour = " << *(t0.m_neighbourLongestEdge) << endl;
             borderFlag = true;
             leppList.push_back(*(t0.m_neighbourLongestEdge));
             return leppList;
         }
         else if (t0 == *t0.m_neighbourLongestEdge->m_neighbourLongestEdge)
         {
-//             cout << "Caso terminal para t0 = " << t0 << endl;
             borderFlag = false;
             leppList.push_back(t0);
             leppList.push_back(*(t0.m_neighbourLongestEdge));
@@ -184,7 +180,6 @@ vector<Triangle> Model::lepp(Triangle t0, bool &borderFlag)
         }
         else
         {
-//             cout << "Caso neighbour para t0 = " << t0 << endl;
             t0 = *(t0.m_neighbourLongestEdge);
         }
     }
@@ -197,8 +192,6 @@ void Model::insertCenter(vector<Triangle> &lepp)
     // Dividimos el último triángulo en 2
     Triangle &t = lepp.back();
     vector<Triangle> division = t.divideOnLongestEdge();
-
-//     cout << "Dividí (center) en: " << division.front() << " y " << division.back() << endl;
 
     // Borramos este triángulo
     m_triangulation.erase(remove(m_triangulation.begin(), m_triangulation.end(), t), m_triangulation.end());
@@ -213,11 +206,6 @@ void Model::insertCentroid(vector<Triangle>& lepp)
     // Dividimos los últimos 2 triángulos en 4
     Triangle &t1 = lepp.at(lepp.size() - 1);                // Último
     Triangle &t2 = lepp.at(lepp.size() - 2);                // Penúltimo
-
-//     cout << "Salieron terminales: " << endl;
-//     cout << t1 << endl;
-//     cout << t2 << endl;
-//     cout << endl;
 
     // Detección centroide
     assert(t1 != t2);
@@ -235,16 +223,7 @@ void Model::insertCentroid(vector<Triangle>& lepp)
     else
         d = Vertex(t2.m_vc);
 
-//     cout << "Voy a buscar el centroide entre: " << endl;
-//     cout << a << endl;
-//     cout << b << endl;
-//     cout << c << endl;
-//     cout << d << endl;
-//     cout << endl;
-
     Vertex centroid((a.m_x + b.m_x + c.m_x + d.m_x) / 4.0, (a.m_y + b.m_y + c.m_y + d.m_y) / 4.0);
-
-//     cout << "Me dicen que el centroide es " << centroid << endl;
 
     // Creación 4 triángulos
     Triangle T1(a, b, centroid);
