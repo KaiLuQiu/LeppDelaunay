@@ -11,7 +11,6 @@
 Model::Model(string fileName)
 {
     parse(fileName);
-    updateNeighbours();
 }
 
 Model::Model(vector<Triangle> triangulation) : m_triangulation(triangulation)
@@ -24,6 +23,9 @@ Model::~Model()
 
 void Model::improve(double tolerance)
 {
+    // Pre-requisito, tener vecinos actualizados
+    updateNeighbours();
+
     // Encuentro triángulos malos
     vector<Triangle> s;
     s = findBadTriangles(tolerance);
