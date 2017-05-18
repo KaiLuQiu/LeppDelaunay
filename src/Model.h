@@ -18,14 +18,14 @@ public:
     *
     * @param fileName p_fileName: Nombre del archivo.
     */
-    Model(string fileName = "../Triangles.txt");
+    explicit Model(string fileName = "../Triangles.txt");
 
     /**
     * @brief Constructor con triangulación.
     *
     * @param triangulation p_triangulation: La triangulación recibida.
     */
-    Model(vector<Triangle> triangulation);
+    explicit Model(vector<Triangle> triangulation);
 
     /**
     * @brief Destructor de Model.

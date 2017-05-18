@@ -13,6 +13,14 @@ Environment Profile=
 Extra Arguments=
 Install Directory=
 
+[Cppcheck]
+checkMissingInclude=true
+checkPerformance=true
+checkPortability=true
+checkStyle=true
+checkUnusedFunction=true
+forceCheck=true
+
 [Launch]
 Launch Configurations=Launch Configuration 0
 

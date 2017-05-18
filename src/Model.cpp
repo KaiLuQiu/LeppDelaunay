@@ -32,7 +32,6 @@ void Model::improve(double tolerance)
 
     int iterations = 0;
     // Mientras hayan triángulos malos
-    // FIXME no necesariamente tomaste el mismo t0 a la siguiente iteración!!! (haz un do - while *t0 != nullptr/ respalda t0 y compara si sigue existiendo )
     while (s.size() > 0)
     {
         cout << "Iteración " << left << setw(6) << iterations << endl;
@@ -70,14 +69,20 @@ void Model::improve(double tolerance)
 
         // Detener iteraciones excesivas
         // FIXME Con 20 grados, de la iteración 27 a la 28 algo falla
-        if (++iterations == 28)
+//         if (++iterations == 28)
             break;
     }
 }
 
 bool Model::areLocallyDelaunay(Triangle& t1, Triangle t2)
 {
-    return t1.maxAngle() <= 120 and t2.maxAngle() <= 120;
+    // Caso trivial, un ángulo mayor de 120 grados imposibilita Delaunay local
+    if (t1.maxAngle() > 120 or t2.maxAngle() > 120)
+    {
+        return false;
+    }
+    // TODO Chequear localidad delaunay
+    return true;
 }
 
 void Model::swapDiagonals(vector<Triangle>& lepp)
