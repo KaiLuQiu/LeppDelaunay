@@ -43,6 +43,7 @@ void Model::improve(double tolerance)
         // Buscamos lista Lepp
         bool borderFlag = false;
         vector<Triangle> leppList = lepp(t0, borderFlag);
+        cout << "Largo lepp = " << leppList.size() << endl;
 
         // Insertamos centroide o centro según caso detectado
         if (borderFlag)
