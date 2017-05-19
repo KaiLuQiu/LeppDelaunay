@@ -5,10 +5,10 @@
 
 # Instrucciones
 
-cd build
-cmake ..
-make
-./lepp-delaunay
+* cd build
+* cmake ..
+* make
+* ./lepp-delaunay
 
 # Cambio de triangulación
 
