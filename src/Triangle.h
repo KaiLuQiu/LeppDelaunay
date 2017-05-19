@@ -20,7 +20,7 @@ public:
     * @param b p_b: Vertex b.
     * @param c p_c: Vertex c.
     */
-    Triangle(Vertex a, Vertex b, Vertex c);
+    Triangle(Vertex &a, Vertex &b, Vertex &c);
 
     /**
     * @brief Destructor de Triangle.
