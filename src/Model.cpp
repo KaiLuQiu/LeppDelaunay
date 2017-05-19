@@ -27,12 +27,6 @@ void Model::improve(double tolerance)
     // Pre-requisito, tener vecinos actualizados
     updateNeighbours();
 
-    for (Triangle &t : m_triangulation)
-    {
-        cout << t << endl;
-    }
-    cout << endl;
-
     // Encuentro triángulos malos
     vector<Triangle> s;
     s = findBadTriangles(tolerance);
