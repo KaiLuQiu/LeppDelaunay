@@ -110,6 +110,12 @@ ostream &operator<<(ostream &out, const Triangle &t)
     return out;
 }
 
+bool Triangle::isCCW()
+{
+    return  (m_vc.m_y - m_va.m_y) * (m_vb.m_x - m_vc.m_x) -
+            (m_vc.m_x - m_va.m_x) * (m_vb.m_y - m_vc.m_y) > 0;
+}
+
 bool Triangle::operator==(const Triangle& t) const
 {
     return (m_va == t.m_va and m_vb == t.m_vb and m_vc == t.m_vc);

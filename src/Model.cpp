@@ -74,8 +74,7 @@ void Model::improve(double tolerance)
 //         cout << "- - - - - - - - " << endl;
 
         // Detener iteraciones excesivas
-        // FIXME Con 20 grados, de la iteración 27 a la 28 algo falla
-//         if (++iterations == 28)
+        if (++iterations == 500)
             break;
     }
 }
@@ -294,17 +293,17 @@ void Model::insertCentroid(vector<Triangle>& lepp)
     Triangle &t1 = lepp.at(lepp.size() - 1);                // Último
     Triangle &t2 = lepp.at(lepp.size() - 2);                // Penúltimo
 
-//     cout << "Salieron terminales: " << endl;
-//     cout << t1 << endl;
-//     cout << t2 << endl;
-//     cout << endl;
-
     // Detección centroide
     assert(t1 != t2);
 
     Vertex a(t1.m_va);
     Vertex b(t1.m_vb);
     Vertex c(t1.m_vc);
+    if (not t1.isCCW())
+    {
+        b = t1.m_vc;
+        c = t1.m_vb;
+    }
     Vertex d;
 
     // Buscamos cual es el distinto para hacer un cuadrilatero
@@ -315,16 +314,7 @@ void Model::insertCentroid(vector<Triangle>& lepp)
     else
         d = Vertex(t2.m_vc);
 
-//     cout << "Voy a buscar el centroide entre: " << endl;
-//     cout << a << endl;
-//     cout << b << endl;
-//     cout << c << endl;
-//     cout << d << endl;
-//     cout << endl;
-
     Vertex centroid((a.m_x + b.m_x + c.m_x + d.m_x) / 4.0, (a.m_y + b.m_y + c.m_y + d.m_y) / 4.0);
-
-//     cout << "Me dicen que el centroide es " << centroid << endl;
 
     // Creación 4 triángulos
     Triangle T1(a, b, centroid);

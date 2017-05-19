@@ -80,6 +80,13 @@ public:
     */
     bool hasEdge(Edge &edge);
 
+    /**
+    * @brief Detecta orientación del triángulo.
+    *
+    * @return bool True si es CCW.
+    */
+    bool isCCW(void);
+
 private:
     Edge getLongestEdge(void);
 
