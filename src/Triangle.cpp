@@ -46,7 +46,7 @@ Edge Triangle::getLongestEdge()
     return m_longestEdge;
 }
 
-void Triangle::operator=(const Triangle& t)
+Triangle& Triangle::operator=(const Triangle& t)
 {
     m_va = t.m_va;
     m_vb = t.m_vb;
@@ -60,6 +60,8 @@ void Triangle::operator=(const Triangle& t)
     m_tb = nullptr;
     m_tc = nullptr;
     getLongestEdge();
+
+    return *this;
 }
 
 double Triangle::minAngle()

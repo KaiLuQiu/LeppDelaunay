@@ -25,7 +25,7 @@ public:
     *
     * @param triangulation p_triangulation: La triangulación recibida.
     */
-    explicit Model(vector<Triangle> triangulation);
+    explicit Model(const vector<Triangle> &triangulation);
 
     /**
     * @brief Destructor de Model.

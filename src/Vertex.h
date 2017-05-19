@@ -29,6 +29,13 @@ public:
     Vertex(int x, int y);
 
     /**
+    * @brief Constructor de copia.
+    *
+    * @param v p_v: Otro Vertex.
+    */
+    Vertex(const Vertex& v);
+
+    /**
      * @brief Destructor de Vertex.
      *
      */
@@ -39,7 +46,7 @@ public:
     *
     * @param v p_v: Vertex a igualar.
     */
-    void operator=(const Vertex &v);
+    Vertex& operator=(const Vertex &v);
 
     /**
     * @brief Overload de comparación de igualdad.

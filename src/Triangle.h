@@ -33,7 +33,7 @@ public:
     *
     * @param t p_t: Triángulo a igualar.
     */
-    void operator=(const Triangle &t);
+    Triangle& operator=(const Triangle &t);
 
     /**
     * @brief Overload de comparación de igualdad.

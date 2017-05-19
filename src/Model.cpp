@@ -13,7 +13,7 @@ Model::Model(string fileName)
     parse(fileName);
 }
 
-Model::Model(vector<Triangle> triangulation) : m_triangulation(triangulation)
+Model::Model(const vector<Triangle> &triangulation) : m_triangulation(triangulation)
 {
 }
 
