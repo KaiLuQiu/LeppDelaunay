@@ -14,11 +14,10 @@ class Model
 
 public:
     /**
-    * @brief Constructor con nombre de archivo a ser parseado.
+    * @brief Constructor vacío.
     *
-    * @param fileName p_fileName: Nombre del archivo.
     */
-    explicit Model(string fileName = "../Triangles.txt");
+    explicit Model();
 
     /**
     * @brief Constructor con triangulación.
@@ -43,10 +42,8 @@ public:
     /**
     * @brief Parser de triangulaciones.
     *
-    * @param fileName p_fileName: Nombre del archivo a parsear.
     */
-    void parse(string fileName = "../Triangles.txt");
-
+    void parse(void);
 
 private:
     /**
@@ -110,6 +107,7 @@ private:
     bool areLocallyDelaunay(Triangle &t1, Triangle t2);
 
     vector<Triangle> m_triangulation;
+    string m_fileName;
 };
 
 #endif // _MODEL_H_
