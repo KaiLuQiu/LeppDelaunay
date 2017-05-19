@@ -26,7 +26,7 @@ public:
     * @param x p_x: Coordenada x.
     * @param y p_y: Coordenada y.
     */
-    Vertex(int x, int y);
+    Vertex(double x, double y);
 
     /**
     * @brief Constructor de copia.
@@ -73,8 +73,8 @@ public:
     double distanceTo(const Vertex &v) const;
 
 private:
-    int m_x;
-    int m_y;
+    double m_x;
+    double m_y;
 };
 
 #endif // _VERTEX_H_

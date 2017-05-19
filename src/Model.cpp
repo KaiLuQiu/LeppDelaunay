@@ -104,11 +104,18 @@ bool Model::areLocallyDelaunay(Triangle& t1, Triangle t2)
     double r1 = centerT1.distanceTo(t1.m_va);
     double r2 = centerT2.distanceTo(t2.m_va);
 
-    if (centerT1.distanceTo(t2.m_va) < r1 or centerT1.distanceTo(t2.m_vb) < r1 or centerT1.distanceTo(t2.m_vc) < r1)
+    double epsilon = 0.0000001;
+
+    if (centerT1.distanceTo(t2.m_va) < r1 - epsilon or centerT1.distanceTo(t2.m_vb) < r1 - epsilon or centerT1.distanceTo(t2.m_vc) < r1 - epsilon)
+    {
         return false;
+    }
 
     if (centerT2.distanceTo(t1.m_va) < r2 or centerT2.distanceTo(t1.m_vb) < r2 or centerT2.distanceTo(t1.m_vc) < r2)
+    {
+        cout << "* whoops2" << endl;
         return false;
+    }
 
     return true;
 }
