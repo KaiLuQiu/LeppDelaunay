@@ -64,6 +64,14 @@ public:
     */
     bool operator!=(const Vertex &v) const;
 
+    /**
+    * @brief Detecta la distancia entre este Vertex y el recibido.
+    *
+    * @param v p_v: Vertex recibido.
+    * @return double Distancia entre los Vertex.
+    */
+    double distanceTo(const Vertex &v) const;
+
 private:
     int m_x;
     int m_y;

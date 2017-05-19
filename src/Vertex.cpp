@@ -1,3 +1,4 @@
+#include <cmath>
 #include "Vertex.h"
 
 Vertex::Vertex() : m_x(0), m_y(0)
@@ -16,10 +17,15 @@ Vertex::~Vertex()
 {
 }
 
-Vertex& Vertex::operator=(const Vertex& t)
+double Vertex::distanceTo(const Vertex &v) const
 {
-    m_x = t.m_x;
-    m_y = t.m_y;
+    return sqrt(pow(m_x - v.m_x, 2) + pow(m_y - v.m_y, 2));
+}
+
+Vertex& Vertex::operator=(const Vertex& v)
+{
+    m_x = v.m_x;
+    m_y = v.m_y;
 
     return *this;
 }

@@ -2,6 +2,7 @@
 #include <sstream>
 #include <cassert>
 #include <algorithm>
+#include <cmath>
 #include <iomanip>
 
 #include "Model.h"
@@ -77,6 +78,17 @@ void Model::improve(double tolerance)
     }
 }
 
+Vertex Model::circumferenceTest(Triangle &t)
+{
+    double D = 2 * ((t.m_va.m_x * (t.m_vb.m_y - t.m_vc.m_y)) + (t.m_vb.m_x * (t.m_vc.m_y - t.m_va.m_y)) + (t.m_vc.m_x * (t.m_va.m_y - t.m_vb.m_y)));
+    if (D == 0)
+        return Vertex();
+    double Px = ( ((pow(t.m_va.m_x, 2) + pow(t.m_va.m_y, 2)) * (t.m_vb.m_y - t.m_vc.m_y)) + ((pow(t.m_vb.m_x, 2) + pow(t.m_vb.m_y, 2)) * (t.m_vc.m_y - t.m_va.m_y)) + ((pow(t.m_vc.m_x, 2) + pow(t.m_vc.m_y, 2)) * (t.m_va.m_y - t.m_vb.m_y)) ) / D;
+    double Py = ( ((pow(t.m_va.m_x, 2) + pow(t.m_va.m_y, 2)) * (t.m_vc.m_x - t.m_vb.m_x)) + ((pow(t.m_vb.m_x, 2) + pow(t.m_vb.m_y, 2)) * (t.m_va.m_x - t.m_vc.m_x)) + ((pow(t.m_vc.m_x, 2) + pow(t.m_vc.m_y, 2)) * (t.m_vb.m_x - t.m_va.m_x)) ) / D;
+
+    return Vertex(Px, Py);
+}
+
 bool Model::areLocallyDelaunay(Triangle& t1, Triangle t2)
 {
     // Caso trivial, un ángulo mayor de 120 grados imposibilita Delaunay local
@@ -84,7 +96,20 @@ bool Model::areLocallyDelaunay(Triangle& t1, Triangle t2)
     {
         return false;
     }
-    // TODO Chequear localidad delaunay
+
+    // Test de circunferencia
+    Vertex centerT1 = circumferenceTest(t1);
+    Vertex centerT2 = circumferenceTest(t2);
+
+    double r1 = centerT1.distanceTo(t1.m_va);
+    double r2 = centerT2.distanceTo(t2.m_va);
+
+    if (centerT1.distanceTo(t2.m_va) < r1 or centerT1.distanceTo(t2.m_vb) < r1 or centerT1.distanceTo(t2.m_vc) < r1)
+        return false;
+
+    if (centerT2.distanceTo(t1.m_va) < r2 or centerT2.distanceTo(t1.m_vb) < r2 or centerT2.distanceTo(t1.m_vc) < r2)
+        return false;
+
     return true;
 }
 

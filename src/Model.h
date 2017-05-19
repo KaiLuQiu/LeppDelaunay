@@ -106,6 +106,14 @@ private:
     */
     bool areLocallyDelaunay(Triangle &t1, Triangle t2);
 
+    /**
+    * @brief Hace el test de circunferencia para detección de Delaunay local.
+    *
+    * @param t p_t: Triángulo recibido.
+    * @return Vertex Centro de la circunferencia detectada.
+    */
+    Vertex circumferenceTest(Triangle &t);
+
     vector<Triangle> m_triangulation;
     string m_fileName;
 };
